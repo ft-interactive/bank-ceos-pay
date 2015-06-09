@@ -101,8 +101,12 @@ html {
     font-family: $sans;
     font-size: 14px;
     color: oColorsGetPaletteColor('grey-tint5');
-    font-weight: bold;
+    font-weight: 600;
     text-align: right;
+}
+
+.year-bar .ceo-total {
+  min-width: 60px;
 }
 
 #main-pic {
@@ -298,7 +302,7 @@ hr {
 .total-label {
     float: right;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .footnote {
