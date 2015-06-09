@@ -19,13 +19,13 @@ body {
 }
 
 
-.m-root {
+html {
     width: 100%;
-    border-top:none;
+    border-top: 0;
     -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
 }
 
-#main-content{
+#main-content {
     position: relative;
 }
 
@@ -39,25 +39,25 @@ body {
     text-align: center;
     border-bottom: 1px solid #cec6b9;
     margin-bottom: 10px;
-    a > img{
+    a > img {
         margin-top: 12px;
         opacity: 0.8;
         transition: opacity 0.3s;
         height: 15px;
     }
-    a > img:hover{
+    a > img:hover {
         opacity: 1;
     }
 }
 
 
-.bioPanel{
+.bio-panel { 
     float: none;
     margin: 0 auto;
     max-width: 600px;
 }
 
-.bioChart {
+.bio-chart {
     margin-bottom: 12px;
 }
 
@@ -67,7 +67,9 @@ body {
     width: 100%;
 }
 
-.bio, .mainPanel, .yearBar {
+.bio,
+.main-panel,
+.year-bar {
     &:after {
       content: "";
       display: table;
@@ -75,15 +77,15 @@ body {
     }
 }
 
-.yearBar {
-    .ceoYear {
+.year-bar {
+    .ceo-year {
         float: left;
         font-family: $sans;
         font-size: 12px;
         color: oColorsGetPaletteColor('pink-tint5');
         background-color: oColorsGetPaletteColor('pink-tint1');
         height: 16px;
-        padding: 2px 4px 4px 4px;
+        padding: 2px 4px 4px;
         max-width: 40px;
         width: 20%;
     }
@@ -94,7 +96,7 @@ body {
     }
 }
 
-.ceoTotal {
+.ceo-total {
     float: right;
     font-family: $sans;
     font-size: 14px;
@@ -103,44 +105,44 @@ body {
     text-align: right;
 }
 
-#mainPic{
+#main-pic {
     float: left;
     margin-right: 12px;
     margin-bottom: 12px;
-    img{
-        width: 80px;
+    img {
+      width: 80px;
     }
 }
 
-#rank{
-    font-family:Clarion, Georgia, "Times New Roman", Times, serif;
-    font-size:48px;
-    color:oColorsGetPaletteColor('pink-tint4');
+#rank {
+    font-family: Clarion, Georgia, "Times New Roman", Times, serif;
+    font-size: 48px;
+    color: oColorsGetPaletteColor('pink-tint4');
     margin-bottom: 4px;
-    span.pay{
-        font-family:$sans;
-        font-weight:200;
-        font-size:30px;
-        color:oColorsGetPaletteColor('pink-tint5'); 
+    .pay {
+        font-family: $sans;
+        font-weight: 200;
+        font-size: 30px;
+        color: oColorsGetPaletteColor('pink-tint5'); 
         display: inline-block;
     }
 }
-#profileName{
-    font-family:$sans;
-    font-size:24px;
-    color:#712428;
-    margin-bottom:4px;
+#profile-name {
+    font-family: $sans;
+    font-size: 24px;
+    color: #712428;
+    margin-bottom: 4px;
 }
 
-#company{
-    font-family:$sans;
-    font-size:18px;
-    color:#A7A59B;
-    margin-bottom:5px;
-    left:228px;     
+#company {
+    font-family: $sans;
+    font-size: 18px;
+    color: oColorsGetPaletteColor('pink-tint4'); 
+    margin-bottom: 5px;
+    left: 228px;     
 }
 
-.years{
+.years {
     // width: 100%;
     font-weight: bold;
     font-family: $sans;
@@ -149,39 +151,39 @@ body {
     overflow: auto;
 }
 
-hr{
+hr {
     border: 0;
     height: 1px;
     border-bottom: 1px solid oColorsGetPaletteColor('pink-tint3');
     margin-bottom: 36px;
 }
 
-.mainPanel{
+.main-panel {
     // width:55%;
     float: none;
     margin: 12px auto 24px;
 }
 
-#profileTxt{
-    font-family:$sans;
-    font-size:15px;
-    line-height: 21px;
-    color:oColorsGetPaletteColor('grey-tint5');
-    margin-top:12px;
+#profile-txt {
+    font-family: $sans;
+    font-size: 17px;
+    line-height: 23px;
+    color: oColorsGetPaletteColor('pink-tint5');
+    margin-top: 12px;
     margin-bottom: 8px;
 }
 
-.ceos{
+.ceos {
     position: relative;
     top: 10px;
     width: 100%;
 }
 
-.ceo{
+.ceo {
     // width:38%;
-    width:120px;
+    width: 120px;
     float: left;
-    height:34px;
+    height: 34px;
     background-color: oColorsGetPaletteColor('pink-tint1');
     margin-bottom: 1px;
     cursor: pointer;
@@ -190,11 +192,12 @@ hr{
     transition: border-left-color 0.3s;
 }
 
-.ceo.selected, .ceo:hover{
+.ceo.selected,
+.ceo:hover {
     border-left-color: #712428;
 }
 
-.ceoName{
+.ceo-name {
     float: left;
     font-family: $sans;
     color: oColorsGetPaletteColor('grey-tint5');
@@ -204,16 +207,16 @@ hr{
     pointer-events: none;
 }
 
-.smallPic {
-    float:right;
+.small-pic {
+    float: right;
     display: none;
-    img{
-        width:30px;
-        height:30px;
+    img {
+        width: 30px;
+        height: 30px;
     }
 }
 
-.chart{
+.chart {
     // float: left;
     // width: 100%;
 }
@@ -222,18 +225,18 @@ hr{
     float: left;
     // width: 60%;
 
-    svg{
+    svg {
         height: 34px;
         width: 100%;
     }
 }
 
-.bioChart .bar svg {
+.bio-chart .bar svg {
     width: 100%;
     height: 16px;
 }
 
-#chartHolder{
+#chart-holder {
     float: left;
     // width: 60%;
     height: 596px;
@@ -241,42 +244,43 @@ hr{
     margin-top: -11px;
 }
 
-.keyHolder{
+.key-holder {
     width: 100%;
     font-size: 13px;
     font-family: $sans;
     color: oColorsGetPaletteColor('grey-tint5');
 }
 
-.keyTitle{
+.key-title {
     font-weight: bold;
     font-size: 15px;
     margin-right: 21px;
 }
 
-.keyItem{
+.key-item {
     margin-right: 16px;
-    float:none;
-    &:first-child{
+    float: none;
+    &:first-child {
         margin-right: 20px;
     }
 }
 
 
-.keyMarkerLine{
-    width:20px;
+.key-marker-line {
+    width: 20px;
     float: left;
-    margin-right:4px;
-    margin-top:3px;
+    margin-right: 4px;
+    margin-top: 5px;
     height: 8px;
 }
 
-.keyText{
+.key-text {
     margin-left: 24px;
     margin-top: 1px;
+    font-size: 13px;
 }
 
-.cashbonus{
+.cashbonus {
     fill: #b33328;
     background-color: #b33328;
 }
@@ -291,71 +295,71 @@ hr{
     background-color: #efbcb8;
 }
 
-.totalLabel {
+.total-label {
     float: right;
     font-size: 14px;
     font-weight: bold;
 }
 
-.footnote{
+.footnote {
     font-size: 12px;
     position: absolute;
-    top:570px;
+    top: 570px;
     float: left;
     left: 2px;
 }
 
 @include oGridRespondTo($from: S) {
-    .smallPic{
-        display: block;
+    .small-pic {
+      display: block;
     }
-    .mainPanel{
-        margin-top: 0;
+    .main-panel {
+      margin-top: 0;
     }
-    #rank{
-        font-size:54px;
-        span.pay {
-            display: none;
-        }
+    #rank {
+      font-size: 54px;
+      .pay {
+        display: none;
+      }
     }
     
-    #mainPic{
-        img{
-            width: 128px;
-        }
+    #main-pic {
+      img {
+        width: 128px;
+      }
     }
-    #profileName {
-        font-size: 30px;
+    #profile-name {
+      font-size: 30px;
     }
     #company {
-        font-size: 21px;
+      font-size: 21px;
     }
 
-    .tableHolder {
+    .table-holder {
         display: block;
     }
     .ceo {
-        width:180px;
+        width: 180px;
     }
-    .keyItem{
-        float:left;
+    .key-item {
+        float: left;
     }
     #ft-header {
         height: 50px;
-        background-color: oColorsGetPaletteColor('pink');
+        background-color: oColorsGetColorFor(page, background);
         width: 100%;
         z-index: 50;
         overflow: hidden;
         text-align: center;
         border-bottom: 1px solid #cec6b9;
         margin-bottom: 20px;
-        a > img{
+        a > img {
             height: 20px;
             margin-top: 13px;
             opacity: 0.8;
             transition: opacity 0.3s;
         }
-        a > img:hover{
+        a > img:hover {
             opacity: 1;
         }
     }

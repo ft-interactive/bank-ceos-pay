@@ -58,21 +58,21 @@ document.addEventListener('DOMContentLoaded', function () {
     var parentNode = d3.select(this);
 
     parentNode.append('div')
-      .attr('id', 'mainPic')
+      .attr('id', 'main-pic')
         .append('img')
         .attr('src', function(d) { return ceoLookup[d].ceo.imageurl; });
 
     parentNode.append('div')
-      .attr('id', 'profileName')
+      .attr('id', 'profile-name')
       .text(function(d) { return d; });
 
     parentNode.append('div')
-      .attr('id', 'profileTxt')
+      .attr('id', 'profile-txt')
       .text(function(d) { return ceoLookup[d].copy; });
 
     parentNode
       .append('div')
-      .attr('class', 'bioChart');
+      .attr('class', 'bio-chart');
 
 
     var personData = spreadsheetData.filter(function(d){
@@ -83,18 +83,18 @@ document.addEventListener('DOMContentLoaded', function () {
     //look up the guys data from the secondary data set
     // var CEOInfo = ceoLookup[person];
     //pusth CEOInfo into the template add it to the page
-    var enterSelection = parentNode.select('.bioChart').selectAll('.yearBar').data( personData.sort(function(a,b){ return a.year.fy - b.year.fy; }))
+    var enterSelection = parentNode.select('.bio-chart').selectAll('.year-bar').data( personData.sort(function(a,b){ return a.year.fy - b.year.fy; }))
       .enter()
       .append('div')
-      .attr('class', 'yearBar o-grid-row');
+      .attr('class', 'year-bar o-grid-row');
 
     enterSelection
       .append('div')
-      .attr('class', 'ceoYear')
+      .attr('class', 'ceo-year')
       .attr('data-o-grid-colspan', '2')
       .text(function(d) { return d.year.fy; }); // add the name;        
     
-    parentNode.selectAll('.yearBar').each(stackedBar, true); //true make the thing 'simple'
+    parentNode.selectAll('.year-bar').each(stackedBar, true); //true make the thing 'simple'
   }
 
   // //By year stuff
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
                       .append('div')
                       .attr('class','bar');
     
-    if (parent.attr('class') === 'yearBar o-grid-row') {
+    if (parent.attr('class') === 'year-bar o-grid-row') {
       barHolder.attr('data-o-grid-colspan', '8 S9');
     } else {
       barHolder.attr('data-o-grid-colspan', '5 S7 L8');
@@ -140,14 +140,14 @@ document.addEventListener('DOMContentLoaded', function () {
       .append('div')
       .attr('data-o-grid-colspan', '2 S1')
       .text(function(d) { return convertMillion(d.total); })
-      .attr('class', 'ceoTotal');
+      .attr('class', 'ceo-total');
 
     if(!simple){
       var infoholder = d3.selectAll('.ceo');
       infoholder.append('div').attr('class', 'highlight');
-      infoholder.append('div').attr('class', 'ceoName')
+      infoholder.append('div').attr('class', 'ceo-name')
       .text(function(d) { return d.first + ' ' + d.last; }); // add the name
-      infoholder.append('div').attr('class', 'smallPic')
+      infoholder.append('div').attr('class', 'small-pic')
                 .append('img').attr('src', function(d) { return ceoLookup[d.first + ' ' + d.last].ceo.imageurl; });
     }
 
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // .range([0, 500]);
 
       // set viewbox for both sets of bars
-    if (parent.attr('class') === 'yearBar o-grid-row') {
+    if (parent.attr('class') === 'year-bar o-grid-row') {
       parent.select('svg')
         .attr('viewBox', '0 0 500 16');
 
@@ -193,14 +193,14 @@ document.addEventListener('DOMContentLoaded', function () {
       .append('rect')
       .attr({
         x:function(d){ return scale(d.startPos); },
-        y:function(d) { if(parent.attr('class') === 'yearBar') { return 1; } else { return 3; } },
-        height: function(d) { if(parent.attr('class') === 'yearBar') { return 14; } else { return 24; } },
+        y:function(d) { if(parent.attr('class') === 'year-bar') { return 1; } else { return 3; } },
+        height: function(d) { if(parent.attr('class') === 'year-bar') { return 14; } else { return 24; } },
         width:function(d){ return scale(d.value); },
         class:function(d){ return d.class + ' stack-rectangle'; }
       });
   }
 
-  d3.select('.bioPanel').selectAll('.bio').data(peopleList)
+  d3.select('.bio-panel').selectAll('.bio').data(peopleList)
     .enter()
     .append('div')
     .attr('class', 'bio')
