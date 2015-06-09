@@ -1,0 +1,362 @@
+$o-grid-is-silent: false;
+
+@import "o-grid/main";
+
+@import 'o-fonts/main';
+@import 'o-colors/main';
+
+@import 'functions';
+@import 'var';
+@import 'fonts';
+
+
+body {
+  @include oColorsFor(page, background);
+
+  margin: 0;
+  border: 0;
+  font-family: font(MetricWeb);
+}
+
+
+.m-root {
+    width: 100%;
+    border-top:none;
+    -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
+}
+
+#main-content{
+    position: relative;
+}
+
+
+#ft-header {
+    height: 40px;
+    background-color: oColorsGetPaletteColor('pink');
+    width: 100%;
+    z-index: 50;
+    overflow: hidden;
+    text-align: center;
+    border-bottom: 1px solid #cec6b9;
+    margin-bottom: 10px;
+    a > img{
+        margin-top: 12px;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+        height: 15px;
+    }
+    a > img:hover{
+        opacity: 1;
+    }
+}
+
+
+.bioPanel{
+    float: none;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.bioChart {
+    margin-bottom: 12px;
+}
+
+.bio {
+    margin-bottom: 24px;
+    border-bottom: 1px solid oColorsGetPaletteColor('pink-tint3');
+    width: 100%;
+}
+
+.bio, .mainPanel, .yearBar {
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+}
+
+.yearBar {
+    .ceoYear {
+        float: left;
+        font-family: $sans;
+        font-size: 12px;
+        color: oColorsGetPaletteColor('pink-tint5');
+        background-color: oColorsGetPaletteColor('pink-tint1');
+        height: 16px;
+        padding: 2px 4px 4px 4px;
+        max-width: 40px;
+        width: 20%;
+    }
+    .bar {
+        // width: 60%; 
+        float: left;
+
+    }
+}
+
+.ceoTotal {
+    float: right;
+    font-family: $sans;
+    font-size: 14px;
+    color: oColorsGetPaletteColor('grey-tint5');
+    font-weight: bold;
+    text-align: right;
+}
+
+#mainPic{
+    float: left;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    img{
+        width: 80px;
+    }
+}
+
+#rank{
+    font-family:Clarion, Georgia, "Times New Roman", Times, serif;
+    font-size:48px;
+    color:oColorsGetPaletteColor('pink-tint4');
+    margin-bottom: 4px;
+    span.pay{
+        font-family:$sans;
+        font-weight:200;
+        font-size:30px;
+        color:oColorsGetPaletteColor('pink-tint5'); 
+        display: inline-block;
+    }
+}
+#profileName{
+    font-family:$sans;
+    font-size:24px;
+    color:#712428;
+    margin-bottom:4px;
+}
+
+#company{
+    font-family:$sans;
+    font-size:18px;
+    color:#A7A59B;
+    margin-bottom:5px;
+    left:228px;     
+}
+
+.years{
+    // width: 100%;
+    font-weight: bold;
+    font-family: $sans;
+    font-size: 17px;
+    margin-bottom: 6px;
+    overflow: auto;
+}
+
+hr{
+    border: 0;
+    height: 1px;
+    border-bottom: 1px solid oColorsGetPaletteColor('pink-tint3');
+    margin-bottom: 36px;
+}
+
+.mainPanel{
+    // width:55%;
+    float: none;
+    margin: 12px auto 24px;
+}
+
+#profileTxt{
+    font-family:$sans;
+    font-size:15px;
+    line-height: 21px;
+    color:oColorsGetPaletteColor('grey-tint5');
+    margin-top:12px;
+    margin-bottom: 8px;
+}
+
+.ceos{
+    position: relative;
+    top: 10px;
+    width: 100%;
+}
+
+.ceo{
+    // width:38%;
+    width:120px;
+    float: left;
+    height:34px;
+    background-color: oColorsGetPaletteColor('pink-tint1');
+    margin-bottom: 1px;
+    cursor: pointer;
+    border-left: 5px solid;
+    border-left-color: transparent; 
+    transition: border-left-color 0.3s;
+}
+
+.ceo.selected, .ceo:hover{
+    border-left-color: #712428;
+}
+
+.ceoName{
+    float: left;
+    font-family: $sans;
+    color: oColorsGetPaletteColor('grey-tint5');
+    font-size: 15px;
+    padding-top: 8px;
+    padding-left: 4px;
+    pointer-events: none;
+}
+
+.smallPic {
+    float:right;
+    display: none;
+    img{
+        width:30px;
+        height:30px;
+    }
+}
+
+.chart{
+    // float: left;
+    // width: 100%;
+}
+
+.ceos .bar {
+    float: left;
+    // width: 60%;
+
+    svg{
+        height: 34px;
+        width: 100%;
+    }
+}
+
+.bioChart .bar svg {
+    width: 100%;
+    height: 16px;
+}
+
+#chartHolder{
+    float: left;
+    // width: 60%;
+    height: 596px;
+    margin-left: 2px;
+    margin-top: -11px;
+}
+
+.keyHolder{
+    width: 100%;
+    font-size: 13px;
+    font-family: $sans;
+    color: oColorsGetPaletteColor('grey-tint5');
+}
+
+.keyTitle{
+    font-weight: bold;
+    font-size: 15px;
+    margin-right: 21px;
+}
+
+.keyItem{
+    margin-right: 16px;
+    float:none;
+    &:first-child{
+        margin-right: 20px;
+    }
+}
+
+
+.keyMarkerLine{
+    width:20px;
+    float: left;
+    margin-right:4px;
+    margin-top:3px;
+    height: 8px;
+}
+
+.keyText{
+    margin-left: 24px;
+    margin-top: 1px;
+}
+
+.cashbonus{
+    fill: #b33328;
+    background-color: #b33328;
+}
+
+.base {
+   fill: #db7365;
+   background-color: #db7365;
+}
+
+.other {
+    fill: #efbcb8;
+    background-color: #efbcb8;
+}
+
+.totalLabel {
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.footnote{
+    font-size: 12px;
+    position: absolute;
+    top:570px;
+    float: left;
+    left: 2px;
+}
+
+@include oGridRespondTo($from: S) {
+    .smallPic{
+        display: block;
+    }
+    .mainPanel{
+        margin-top: 0;
+    }
+    #rank{
+        font-size:54px;
+        span.pay {
+            display: none;
+        }
+    }
+    
+    #mainPic{
+        img{
+            width: 128px;
+        }
+    }
+    #profileName {
+        font-size: 30px;
+    }
+    #company {
+        font-size: 21px;
+    }
+
+    .tableHolder {
+        display: block;
+    }
+    .ceo {
+        width:180px;
+    }
+    .keyItem{
+        float:left;
+    }
+    #ft-header {
+        height: 50px;
+        background-color: oColorsGetPaletteColor('pink');
+        width: 100%;
+        z-index: 50;
+        overflow: hidden;
+        text-align: center;
+        border-bottom: 1px solid #cec6b9;
+        margin-bottom: 20px;
+        a > img{
+            height: 20px;
+            margin-top: 13px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        a > img:hover{
+            opacity: 1;
+        }
+    }
+}
