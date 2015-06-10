@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .attr('id', 'profile-name')
       .text(function(d) { return d; });
 
+
     parentNode.append('div')
       .attr('id', 'profile-txt')
       .text(function(d) { return ceoLookup[d].copy; });
@@ -76,6 +77,10 @@ document.addEventListener('DOMContentLoaded', function () {
       .append('div')
       .attr('class', 'bio-chart');
 
+    parentNode.append('a')
+      .attr('class', 'top-link')
+      .attr('href', function(d) { return '#ft-header';})
+      .html(' Back to chart');
 
     var personData = spreadsheetData.filter(function(d){
       var nameElements = person.split(' ');
