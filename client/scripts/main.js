@@ -7,7 +7,9 @@ import mainTemplate from '../templates/main.hbs'
 document.addEventListener('DOMContentLoaded', function () {
   oHoverable.init(); // makes hover effects work on touch devices
 
-  document.querySelector('main').innerHTML = mainTemplate();
+  document.querySelector('main').innerHTML = mainTemplate(spreadsheet.options);
+
+  console.log(spreadsheet.options);
 
   var spreadsheetData = spreadsheet.data;
   var options = spreadsheet.options;

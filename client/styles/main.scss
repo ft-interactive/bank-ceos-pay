@@ -50,6 +50,30 @@ html {
     }
 }
 
+.main-panel {
+    // width:55%;
+    float: none;
+    // margin: 0 auto 24px;
+    h1 {
+      font-family: $serif-display;
+      font-size: 2em;
+      font-weight: normal;
+      width: 100%;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    .introtext {
+      font-family: $serif;
+      font-size: 1em;
+      color: oColorsGetPaletteColor('grey-tint5');
+      max-width: 600px;
+      text-align: center;
+      line-height: 1.35em;
+      margin: 0 auto 1em;
+    }
+}
+
 
 .bio-panel { 
     float: none;
@@ -97,6 +121,7 @@ html {
 }
 
 .ceo-total {
+
     float: right;
     font-family: $sans;
     font-size: 14px;
@@ -162,17 +187,13 @@ hr {
     margin-bottom: 36px;
 }
 
-.main-panel {
-    // width:55%;
-    float: none;
-    margin: 12px auto 24px;
-}
 
 #profile-txt {
     font-family: $sans;
     font-size: 17px;
+    font-weight: 200;
     line-height: 23px;
-    color: oColorsGetPaletteColor('pink-tint5');
+    color: oColorsGetPaletteColor('grey-tint5');
     margin-top: 12px;
     margin-bottom: 8px;
 }
@@ -318,7 +339,14 @@ hr {
       display: block;
     }
     .main-panel {
-      margin-top: 0;
+      h1 {
+        font-size: 3em;
+      }
+      .introtext {
+        font-size: 1.2em;
+        line-height: 1.5em;
+        margin-bottom: 1.5em;
+      }
     }
     #rank {
       font-size: 54px;
