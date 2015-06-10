@@ -153,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if(!simple){
       var infoholder = d3.selectAll('.ceo');
-      infoholder.append('div').attr('class', 'highlight');
       infoholder.append('div').attr('class', 'ceo-name')
       .text(function(d) { return d.first + ' ' + d.last; }); // add the name
       infoholder.append('div').attr('class', 'small-pic')

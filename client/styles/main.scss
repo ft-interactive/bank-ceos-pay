@@ -226,6 +226,10 @@ hr {
     margin-bottom: 1px;
     cursor: pointer;
     border-left: 0;
+    display: flex;
+    flex-flow: flex-direction;
+    justify-content:space-between;
+    align-items: center;
 }
 
 .ceo.selected,
@@ -238,7 +242,6 @@ hr {
     font-family: $sans;
     color: oColorsGetPaletteColor('grey-tint5');
     font-size: 15px;
-    padding-top: 8px;
     padding-left: 0;
     pointer-events: none;
 }
