@@ -110,12 +110,14 @@ document.addEventListener('DOMContentLoaded', function () {
         return d.year.fy === value;
       }).sort(function(a,b){ return b.total - a.total; }))
       .enter()
-      .append('div').attr('class','ceos o-grid-row');
+      .append('div').attr('class','ceos o-grid-row')
+      .on('click', function(d) { return document.getElementById(d.first + d.last).scrollIntoView(); });
 
     d3.selectAll('.ceos')
       .append('div')
       .attr('class', 'ceo')
       .attr('data-o-grid-colspan', '4 M3');
+      
 
     d3.selectAll('.ceos')
       .each(stackedBar);
@@ -206,6 +208,9 @@ document.addEventListener('DOMContentLoaded', function () {
     .enter()
     .append('div')
     .attr('class', 'bio')
+    .attr('id', function(d) { 
+      var linkname = d.split(' ');
+      return linkname[0] + linkname[1]; })
     .each(drawPersonHistory);
 
   d3.select('.chart').call(drawChart, chartYear);
