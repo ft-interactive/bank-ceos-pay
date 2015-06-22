@@ -197,7 +197,7 @@ hr {
     border: 0;
     height: 1px;
     border-bottom: 1px solid oColorsGetPaletteColor('pink-tint3');
-    margin-bottom: 36px;
+    margin-bottom: 20px;
 }
 
 
@@ -226,10 +226,10 @@ hr {
     margin-bottom: 1px;
     cursor: pointer;
     border-left: 0;
-    display: flex;
-    flex-flow: flex-direction;
-    justify-content:space-between;
-    align-items: center;
+    display: -webkit-flex;
+    // flex-flow: flex-direction;
+    -webkit-justify-content:space-between;
+    -webkit-align-items: center;
 }
 
 .ceo.selected,
@@ -258,6 +258,7 @@ hr {
 .chart {
     // float: left;
     // width: 100%;
+    margin-bottom: 20px;
 }
 
 .ceos .bar {
@@ -362,6 +363,11 @@ hr {
         margin-bottom: 1.5em;
       }
     }
+
+    hr {
+      margin-bottom: 36px;
+    }
+    
     #rank {
       font-size: 54px;
       .pay {
