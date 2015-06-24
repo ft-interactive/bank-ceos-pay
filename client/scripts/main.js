@@ -220,13 +220,16 @@ document.addEventListener('DOMContentLoaded', function () {
   var axis = d3.svg.axis().ticks(5).tickFormat(d3.format('d'));
 
   function createSlider () {
-    d3.select('.slider').call(d3.slider().axis(axis).min(2009).max(2014).step(1)
+    d3.select('.slider').call(d3.slider().axis(axis).min(2009).max(2014).step(1).value(chartYear)
       .on('slide', function(evt, value) {
+        d3.select('.key-title').text('Breakdown of pay, ' + value)
+        d3.select('.chart').html('');
+        d3.select('.chart').call(drawChart, value);
       }))
   }
 
   createSlider();
-  
+
   var timeOut = null;
 
   window.onresize = function(){
