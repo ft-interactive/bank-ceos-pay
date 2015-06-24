@@ -8,6 +8,7 @@ $o-grid-is-silent: false;
 @import 'functions';
 @import 'var';
 @import 'fonts';
+@import 'slider';
 
 
 body {
@@ -71,6 +72,15 @@ html {
       text-align: center;
       line-height: 1.35em;
       margin: 0 auto 1em;
+    }
+    .slider-holder {
+        width: 95%;
+        float: none;
+        height: 65px;
+        border-radius: 6px;
+        background-color: #f6e9d8;
+        margin-bottom: 16px;
+        padding: 5px;
     }
 }
 
@@ -302,6 +312,7 @@ hr {
     font-size: 13px;
     font-family: $sans;
     color: oColorsGetPaletteColor('grey-tint5');
+    clear: both;
 }
 
 .key-title {
@@ -375,6 +386,11 @@ hr {
         line-height: 1.5em;
         margin-bottom: 1.5em;
       }
+      .slider-holder {
+        width: 50%;
+        float:right;
+        height: 70px;
+        }
     }
 
     hr {

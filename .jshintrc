@@ -25,6 +25,7 @@
   "predef": ["require", "module", "exports", "requireText"],
 
   "globals": {
-    "spreadsheet": true
+    "spreadsheet": true,
+    "d3": true
   }
 }

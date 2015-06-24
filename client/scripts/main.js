@@ -1,8 +1,6 @@
-'use strict';
-
 import oHoverable from 'o-hoverable';
-import d3 from 'd3';
 import mainTemplate from '../templates/main.hbs'
+
 
 document.addEventListener('DOMContentLoaded', function () {
   oHoverable.init(); // makes hover effects work on touch devices
@@ -15,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var options = spreadsheet.options;
   var ceoData = spreadsheet.ceo;
   var chartYear = 2013;
-
 
   //utility functions
 
@@ -218,5 +215,29 @@ document.addEventListener('DOMContentLoaded', function () {
     .each(drawPersonHistory);
 
   d3.select('.chart').call(drawChart, chartYear);
+
+  //slider event
+  var axis = d3.svg.axis().ticks(5).tickFormat(d3.format('d'));
+
+  function createSlider () {
+    d3.select('.slider').call(d3.slider().axis(axis).min(2009).max(2014).step(1)
+      .on('slide', function(evt, value) {
+      }))
+  }
+
+  createSlider();
+  
+  var timeOut = null;
+
+  window.onresize = function(){
+      if (timeOut != null)
+          clearTimeout(timeOut);
+
+      timeOut = setTimeout(function(){
+        d3.select('.slider').html('');
+        createSlider();
+      }, 200);
+  };
+  
 
 });
