@@ -128,6 +128,7 @@ html {
     color: oColorsGetPaletteColor('grey-tint5');
     font-weight: 600;
     text-align: right;
+    padding-top: 5px;
 }
 
 .year-bar .ceo-total {
@@ -215,6 +216,8 @@ hr {
     position: relative;
     top: 10px;
     width: 100%;
+    background-color: oColorsGetPaletteColor('pink-tint1');
+    height: 34px;
 }
 
 .ceo {
@@ -263,11 +266,21 @@ hr {
 
 .ceos .bar {
     float: left;
-    // width: 60%;
+    margin-top: 2px;
+    padding: 0;
 
     svg {
         height: 34px;
         width: 100%;
+    }
+}
+
+.bio-chart .year-bar {
+    background-color: oColorsGetPaletteColor('pink-tint1');
+    height: 19px;
+    margin-bottom: 2px;
+    .ceo-total {
+        padding-top: 0;
     }
 }
 
