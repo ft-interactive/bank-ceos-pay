@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var del = require('del');
+var igdeploy = require('igdeploy');
 var path = require('path');
 var browserify = require('browserify');
 var browserSync = require('browser-sync');
@@ -229,3 +230,11 @@ gulp.task('build', function (done) {
     ['html', 'images', 'copy'],
   done);
 });
+
+// task to deploy to the interactive server
+gulp.task('deploy', igdeploy.bind(null, {
+  src: 'dist',
+  destPrefix: '/var/opt/customer/apps/interactive.ftdata.co.uk/var/www/html',
+  dest: 'sites/2015/bank-ceo-compensation-2015',
+  baseURL: 'http://www.ft.com/ig/',
+}));
