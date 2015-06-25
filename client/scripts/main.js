@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var spreadsheetData = spreadsheet.data;
   var options = spreadsheet.options;
   var ceoData = spreadsheet.ceo;
-  var chartYear = 2013;
+  var chartYear = 2014;
 
   //utility functions
 
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (parent.attr('class') === 'year-bar o-grid-row') {
       barHolder.attr('data-o-grid-colspan', '8 S9');
     } else {
-      barHolder.attr('data-o-grid-colspan', '5 S7 L8');
+      barHolder.attr('data-o-grid-colspan', '5 S6 M7 L8');
     }
       
     barHolder

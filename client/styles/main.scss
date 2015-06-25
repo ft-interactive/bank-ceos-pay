@@ -76,7 +76,7 @@ html {
     .slider-holder {
         width: 95%;
         float: none;
-        height: 65px;
+        height: 50px;
         border-radius: 6px;
         background-color: #f6e9d8;
         margin-bottom: 16px;
@@ -139,6 +139,7 @@ html {
     font-weight: 600;
     text-align: right;
     padding-top: 8px;
+    width: 50px;
 }
 
 .year-bar .ceo-total {
@@ -345,18 +346,18 @@ hr {
 }
 
 .cashbonus {
-    fill: #b33328;
-    background-color: #b33328;
+    fill: #ecafaf;
+    background-color: #ecafaf;
 }
 
 .base {
-   fill: #db7365;
-   background-color: #db7365;
+   fill: #bb6d82;
+   background-color: #bb6d82;
 }
 
 .other {
-    fill: #efbcb8;
-    background-color: #efbcb8;
+    fill: #d7706c;
+    background-color: #d7706c;
 }
 
 .total-label {
@@ -389,7 +390,7 @@ hr {
       .slider-holder {
         width: 50%;
         float:right;
-        height: 70px;
+        height: 50px;
         }
     }
 

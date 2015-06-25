@@ -6,7 +6,6 @@
     "o-colors": "~2.4.7",
     "o-hoverable": "~1.1.0",
     "o-fonts": "~1.6.4",
-    "d3.slider": "https://github.com/turban/d3.slider.git",
     "d3": "~3.5.5"
   }
 }
