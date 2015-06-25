@@ -1,13 +1,13 @@
+
 import oHoverable from 'o-hoverable';
-import mainTemplate from '../templates/main.hbs'
+import mainTemplate from '../templates/main.hbs';
 
 
 document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
   oHoverable.init(); // makes hover effects work on touch devices
 
   document.querySelector('main').innerHTML = mainTemplate(spreadsheet.options);
-
-  console.log(spreadsheet.options);
 
   var spreadsheetData = spreadsheet.data;
   var options = spreadsheet.options;
@@ -222,10 +222,10 @@ document.addEventListener('DOMContentLoaded', function () {
   function createSlider () {
     d3.select('.slider').call(d3.slider().axis(axis).min(2009).max(2014).step(1).value(chartYear)
       .on('slide', function(evt, value) {
-        d3.select('.key-title').text('Breakdown of pay, ' + value)
+        d3.select('.key-title').text('Breakdown of pay, ' + value);
         d3.select('.chart').html('');
         d3.select('.chart').call(drawChart, value);
-      }))
+      }));
   }
 
   createSlider();
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var timeOut = null;
 
   window.onresize = function(){
-      if (timeOut != null)
+      if (timeOut !== null)
           clearTimeout(timeOut);
 
       timeOut = setTimeout(function(){

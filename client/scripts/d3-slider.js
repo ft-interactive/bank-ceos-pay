@@ -5,6 +5,7 @@
     BSD license: http://opensource.org/licenses/BSD-3-Clause
 */
 (function (root, factory) {
+  'use strict';
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define(['d3'], factory);
@@ -23,8 +24,7 @@
   }
 }(this, function (d3) {
 return function module() {
-  "use strict";
-
+'use strict';
   // Public variables width default settings
   var min = 0,
       max = 100,
@@ -65,13 +65,13 @@ return function module() {
       var drag = d3.behavior.drag();
       drag.on('dragend', function () {
         dispatch.slideend(d3.event, value);
-      })
+      });
 
       // Slider handle
       //if range slider, create two
       // var divRange;
 
-      if (toType(value) == "array" && value.length == 2) {
+      if (toType(value) === "array" && value.length === 2) {
         handle1 = div.append("a")
           .classed("d3-slider-handle", true)
           .attr("xlink:href", "#")
@@ -98,7 +98,7 @@ return function module() {
 
         div.on("click", onClickHorizontal);
         
-        if (toType(value) == "array" && value.length == 2) {
+        if (toType(value) === "array" && value.length === 2) {
           divRange = d3.select(this).append('div').classed("d3-slider-range", true);
 
           handle1.style("left", formatPercent(scale(value[ 0 ])));
@@ -121,7 +121,7 @@ return function module() {
 
         div.on("click", onClickVertical);
         drag.on("drag", onDragVertical);
-        if (toType(value) == "array" && value.length == 2) {
+        if (toType(value) === "array" && value.length === 2) {
           divRange = d3.select(this).append('div').classed("d3-slider-range-vertical", true);
 
           handle1.style("bottom", formatPercent(scale(value[ 0 ])));
@@ -210,7 +210,7 @@ return function module() {
       }
 
       function onClickHorizontal() {
-        if (toType(value) != "array") {
+        if (toType(value) !== "array") {
           var pos = Math.max(0, Math.min(sliderLength, d3.event.offsetX || d3.event.layerX));
           moveHandle(scale.invert ? 
                       stepValue(scale.invert(pos / sliderLength))
@@ -219,7 +219,7 @@ return function module() {
       }
 
       function onClickVertical() {
-        if (toType(value) != "array") {
+        if (toType(value) !== "array") {
           var pos = sliderLength - Math.max(0, Math.min(sliderLength, d3.event.offsetY || d3.event.layerY));
           moveHandle(scale.invert ? 
                       stepValue(scale.invert(pos / sliderLength))
@@ -230,7 +230,7 @@ return function module() {
       function onDragHorizontal() {
         if ( d3.event.sourceEvent.target.id === "handle-one") {
           active = 1;
-        } else if ( d3.event.sourceEvent.target.id == "handle-two" ) {
+        } else if ( d3.event.sourceEvent.target.id === "handle-two" ) {
           active = 2;
         }
         var pos = Math.max(0, Math.min(sliderLength, d3.event.x));
@@ -242,10 +242,10 @@ return function module() {
       function onDragVertical() {
         if ( d3.event.sourceEvent.target.id === "handle-one") {
           active = 1;
-        } else if ( d3.event.sourceEvent.target.id == "handle-two" ) {
+        } else if ( d3.event.sourceEvent.target.id === "handle-two" ) {
           active = 2;
         }
-        var pos = sliderLength - Math.max(0, Math.min(sliderLength, d3.event.y))
+        var pos = sliderLength - Math.max(0, Math.min(sliderLength, d3.event.y));
         moveHandle(scale.invert ? 
                     stepValue(scale.invert(pos / sliderLength))
                   : nearestTick(pos / sliderLength));
@@ -261,7 +261,7 @@ return function module() {
 
   // Move slider handle on click/drag
   function moveHandle(newValue) {
-    var currentValue = toType(value) == "array"  && value.length == 2 ? value[active - 1]: value,
+    var currentValue = toType(value) === "array"  && value.length === 2 ? value[active - 1]: value,
         oldPos = formatPercent(scale(stepValue(currentValue))),
         newPos = formatPercent(scale(stepValue(newValue))),
         position = (orientation === "horizontal") ? "left" : "bottom";
@@ -271,16 +271,16 @@ return function module() {
         value[ active - 1 ] = newValue;
         if (d3.event) {
           dispatch.slide(d3.event, value );
-        };
+        }
       } else {
         if (d3.event) {
           dispatch.slide(d3.event.sourceEvent || d3.event, value = newValue);
-        };
+        }
       }
 
       if ( value[ 0 ] >= value[ 1 ] ) return;
       if ( active === 1 ) {
-        if (toType(value) == "array" && value.length == 2) {
+        if (toType(value) === "array" && value.length === 2) {
           (position === "left") ? divRange.style("left", newPos) : divRange.style("bottom", newPos);
         }
 
@@ -326,7 +326,7 @@ return function module() {
       if (Math.abs(valModStep) * 2 >= step) {
         alignValue += (valModStep > 0) ? step : -step;
       }
-    };
+    }
 
     return alignValue;
 
@@ -344,16 +344,16 @@ return function module() {
         if (Math.abs(dist[i]) < r) {
           r = Math.abs(dist[i]);
           index = i;
-        };
+        }
     } while (dist[i] > 0 && i < dist.length - 1);
 
     return ticks[index];
-  };
+  }
 
   // Return the type of an object
   function toType(v) {
     return ({}).toString.call(v).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
-  };
+  }
 
   // Getter/setter functions
   slider.min = function(_) {
@@ -390,7 +390,7 @@ return function module() {
     if (!arguments.length) return axis;
     axis = _;
     return slider;
-  };
+  }
 
   slider.margin = function(_) {
     if (!arguments.length) return margin;
@@ -402,7 +402,7 @@ return function module() {
     if (!arguments.length) return value;
     if (value) {
       moveHandle(stepValue(_));
-    };
+    }
     value = _;
     return slider;
   };
@@ -423,5 +423,5 @@ return function module() {
 
   return slider;
 
-}
+};
 }));

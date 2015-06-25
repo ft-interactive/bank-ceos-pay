@@ -80,7 +80,7 @@ html {
         border-radius: 6px;
         background-color: #f6e9d8;
         margin-bottom: 16px;
-        padding: 5px;
+        padding: 5px 5px 5px 8px;
     }
 }
 
@@ -242,7 +242,7 @@ hr {
     border-left: 0;
     display: -webkit-flex;
     // flex-flow: flex-direction;
-    -webkit-justify-content:space-between;
+    -webkit-justify-content: space-between;
     -webkit-align-items: center;
 }
 
@@ -317,7 +317,7 @@ hr {
 }
 
 .key-title {
-    font-weight: bold;
+    font-weight: 600;
     font-size: 15px;
     margin-right: 21px;
 }
@@ -389,7 +389,7 @@ hr {
       }
       .slider-holder {
         width: 50%;
-        float:right;
+        float: right;
         height: 50px;
         }
     }
