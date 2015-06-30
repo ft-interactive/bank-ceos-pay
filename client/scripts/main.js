@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     parentNode.append('div')
       .attr('id', 'profile-txt')
-      .text(function(d) { return ceoLookup[d].copy; });
+      .html(function(d) { return ceoLookup[d].copy; });
 
     parentNode
       .append('div')
