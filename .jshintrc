@@ -17,6 +17,7 @@
   "globalstrict": true,
   "lastsemic": true,
   "multistr": true,
+  "node": true,
   "smarttabs": true,
   "sub": true,
 
