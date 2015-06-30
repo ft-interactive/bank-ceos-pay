@@ -2,7 +2,7 @@
 
 import oHoverable from 'o-hoverable';
 import d3 from 'd3';
-import mainTemplate from '../templates/main.hbs'
+import mainTemplate from '../templates/main.hbs';
 
 document.addEventListener('DOMContentLoaded', function () {
   oHoverable.init(); // makes hover effects work on touch devices
@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log(spreadsheet.options);
 
   var spreadsheetData = spreadsheet.data;
-  var options = spreadsheet.options;
   var ceoData = spreadsheet.ceo;
   var chartYear = 2013;
 
