@@ -75,7 +75,7 @@ html {
 }
 
 
-.bio-panel { 
+.bio-panel {
     float: none;
     margin: 0 auto;
     max-width: 600px;
@@ -114,7 +114,7 @@ html {
         width: 20%;
     }
     .bar {
-        // width: 60%; 
+        // width: 60%;
         float: left;
 
     }
@@ -153,7 +153,7 @@ html {
         font-family: $sans;
         font-weight: 200;
         font-size: 30px;
-        color: oColorsGetPaletteColor('pink-tint5'); 
+        color: oColorsGetPaletteColor('pink-tint5');
         display: inline-block;
     }
 }
@@ -180,9 +180,9 @@ html {
 #company {
     font-family: $sans;
     font-size: 18px;
-    color: oColorsGetPaletteColor('pink-tint4'); 
+    color: oColorsGetPaletteColor('pink-tint4');
     margin-bottom: 5px;
-    left: 228px;     
+    left: 228px;
 }
 
 .years {
@@ -231,7 +231,7 @@ hr {
     border-left: 0;
     display: -webkit-flex;
     // flex-flow: flex-direction;
-    -webkit-justify-content:space-between;
+    -webkit-justify-content: space-between;
     -webkit-align-items: center;
 }
 
@@ -380,14 +380,14 @@ hr {
     hr {
       margin-bottom: 36px;
     }
-    
+
     #rank {
       font-size: 54px;
       .pay {
         display: none;
       }
     }
-    
+
     #main-pic {
       img {
         width: 128px;
@@ -406,7 +406,7 @@ hr {
     .ceo {
         width: 180px;
         border-left: 5px solid;
-        border-left-color: transparent; 
+        border-left-color: transparent;
         transition: border-left-color 0.3s;
     }
     .ceo-name {

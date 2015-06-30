@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     return lookup;
   }
-  
+
   var ceoLookup = makeLookup(ceoData, function(d){ return d.ceo.first + ' ' + d.ceo.last; }); //create CEO name list
-  
+
   // display salaries correctly
   function convertMillion (data) {
     if (!data || data === 'null') {
@@ -49,16 +49,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     return html;
   }
-  
+
 
   //by person
 
-  var people = {};
-  spreadsheetData.forEach(function(d){
-    people[d.first + ' ' + d.last] = true;
-  });
-  
+  var people = spreadsheetData.sort(sortTotal).reduce(function(o, d) {
+    if (d.year.fy === chartYear) {
+      o[d.first + ' ' + d.last] = true;
+    }
+    return o;
+  }, {});
+
+
   var peopleList = Object.keys(people);
+
+  function sortTotal(a,b){
+    return b.total - a.total;
+  }
 
 
   function drawPersonHistory(person){
@@ -106,8 +113,8 @@ document.addEventListener('DOMContentLoaded', function () {
       .append('div')
       .attr('class', 'ceo-year')
       .attr('data-o-grid-colspan', '2')
-      .text(function(d) { return d.year.fy; }); // add the name;        
-    
+      .text(function(d) { return d.year.fy; }); // add the name;
+
     parentNode.selectAll('.year-bar').each(stackedBar, true); //true make the thing 'simple'
   }
 
@@ -120,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .selectAll('.ceos')
       .data(spreadsheetData.filter(function(d){
         return d.year.fy === value;
-      }).sort(function(a,b){ return b.total - a.total; }))
+      }).sort(sortTotal))
       .enter()
       .append('div').attr('class','ceos o-grid-row')
       .on('click', function(d) { return document.getElementById(d.first + d.last).scrollIntoView(); });
@@ -129,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .append('div')
       .attr('class', 'ceo')
       .attr('data-o-grid-colspan', '4 M3');
-      
+
 
     d3.selectAll('.ceos')
       .each(stackedBar);
@@ -140,13 +147,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var barHolder = parent
                       .append('div')
                       .attr('class','bar');
-    
+
     if (parent.attr('class') === 'year-bar o-grid-row') {
       barHolder.attr('data-o-grid-colspan', '8 S9');
     } else {
       barHolder.attr('data-o-grid-colspan', '5 S7 L8');
     }
-      
+
     barHolder
       .append('svg')
       .attr('width', 450)
@@ -184,8 +191,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var stackData = stackLayout(dataRow, ['base', 'cashbonus', 'other']);
 
-    var maxVal = d3.max(spreadsheetData, function(d) {return +d.total; });
-  
+    var maxVal = d3.max(spreadsheetData.filter(function(d){
+      return d.year.fy === chartYear;
+    }), function(d) {return +d.total; });
+
+
 
     var scale = d3.scale.linear() // set the scale of the charts
       .domain([0, maxVal]);
@@ -219,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .enter()
     .append('div')
     .attr('class', 'bio')
-    .attr('id', function(d) { 
+    .attr('id', function(d) {
       var linkname = d.split(' ');
       return linkname[0] + linkname[1]; })
     .each(drawPersonHistory);
