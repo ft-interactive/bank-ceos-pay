@@ -5,7 +5,14 @@ import d3 from 'd3';
 import mainTemplate from '../templates/main.hbs';
 
 document.addEventListener('DOMContentLoaded', function () {
+
   oHoverable.init(); // makes hover effects work on touch devices
+
+  var latestDataYear = d3.max(spreadsheet.data, function(d){
+    return d.year.fy;
+  });
+
+  var chartYear = spreadsheet.options.chartYear = parseInt(spreadsheet.options.chartYear) || latestDataYear;
 
   document.querySelector('main').innerHTML = mainTemplate(spreadsheet.options);
 
@@ -13,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var spreadsheetData = spreadsheet.data;
   var ceoData = spreadsheet.ceo;
-  var chartYear = 2013;
 
 
   //utility functions
@@ -61,7 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
     parentNode.append('div')
       .attr('id', 'main-pic')
         .append('img')
-        .attr('src', function(d) { return ceoLookup[d].ceo.imageurl; });
+        .attr('src', function(d) {
+          return ceoLookup[d].ceo.imageurl;
+        });
 
     parentNode.append('div')
       .attr('id', 'profile-name')
@@ -107,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   function drawChart(parent, value){
-    if(!value) value = 2014;
+    if(!value) value = chartYear;
     parent
       .selectAll('.ceos')
       .data(spreadsheetData.filter(function(d){
