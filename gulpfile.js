@@ -236,5 +236,5 @@ gulp.task('deploy', igdeploy.bind(null, {
   src: 'dist',
   destPrefix: '/var/opt/customer/apps/interactive.ftdata.co.uk/var/www/html',
   dest: 'sites/2015/bank-ceo-compensation-2015',
-  baseURL: 'http://www.ft.com/ig/',
+  baseURL: 'http://ig.ft.com/',
 }));

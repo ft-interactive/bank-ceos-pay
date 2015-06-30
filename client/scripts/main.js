@@ -1,18 +1,23 @@
+'use strict';
 
 import oHoverable from 'o-hoverable';
 import mainTemplate from '../templates/main.hbs';
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  'use strict';
+
   oHoverable.init(); // makes hover effects work on touch devices
+
+  var latestDataYear = d3.max(spreadsheet.data, function(d){
+    return d.year.fy;
+  });
+
+  var chartYear = spreadsheet.options.chartYear = parseInt(spreadsheet.options.chartYear) || latestDataYear;
 
   document.querySelector('main').innerHTML = mainTemplate(spreadsheet.options);
 
   var spreadsheetData = spreadsheet.data;
-  var options = spreadsheet.options;
   var ceoData = spreadsheet.ceo;
-  var chartYear = 2014;
 
   //utility functions
 
@@ -23,9 +28,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     return lookup;
   }
-  
+
   var ceoLookup = makeLookup(ceoData, function(d){ return d.ceo.first + ' ' + d.ceo.last; }); //create CEO name list
-  
+
   // display salaries correctly
   function convertMillion (data) {
     if (!data || data === 'null') {
@@ -41,17 +46,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     return html;
   }
-  
+
 
   //by person
+
+  // only show the people for the selected year
+  // var people = spreadsheetData.sort(sortTotal).reduce(function(o, d) {
+  //   if (d.year.fy === chartYear) {
+  //     o[d.first + ' ' + d.last] = true;
+  //   }
+  //   return o;
+  // }, {});
 
   var people = {};
   spreadsheetData.forEach(function(d){
     people[d.first + ' ' + d.last] = true;
   });
-  
+
   var peopleList = Object.keys(people);
 
+  function sortTotal(a,b){
+    return b.total - a.total;
+  }
 
   function drawPersonHistory(person){
     var parentNode = d3.select(this);
@@ -59,7 +75,9 @@ document.addEventListener('DOMContentLoaded', function () {
     parentNode.append('div')
       .attr('id', 'main-pic')
         .append('img')
-        .attr('src', function(d) { return ceoLookup[d].ceo.imageurl; });
+        .attr('src', function(d) {
+          return ceoLookup[d].ceo.imageurl;
+        });
 
     parentNode.append('div')
       .attr('id', 'profile-name')
@@ -68,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     parentNode.append('div')
       .attr('id', 'profile-txt')
-      .text(function(d) { return ceoLookup[d].copy; });
+      .html(function(d) { return ceoLookup[d].copy; });
 
     parentNode
       .append('div')
@@ -96,8 +114,8 @@ document.addEventListener('DOMContentLoaded', function () {
       .append('div')
       .attr('class', 'ceo-year')
       .attr('data-o-grid-colspan', '2')
-      .text(function(d) { return d.year.fy; }); // add the name;        
-    
+      .text(function(d) { return d.year.fy; }); // add the name;
+
     parentNode.selectAll('.year-bar').each(stackedBar, true); //true make the thing 'simple'
   }
 
@@ -105,12 +123,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   function drawChart(parent, value){
-    if(!value) value = 2014;
+    if(!value) value = chartYear;
     parent
       .selectAll('.ceos')
       .data(spreadsheetData.filter(function(d){
         return d.year.fy === value;
-      }).sort(function(a,b){ return b.total - a.total; }))
+      }).sort(sortTotal))
       .enter()
       .append('div').attr('class','ceos o-grid-row')
       .on('click', function(d) { return document.getElementById(d.first + d.last).scrollIntoView(); });
@@ -119,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .append('div')
       .attr('class', 'ceo')
       .attr('data-o-grid-colspan', '4 M3');
-      
+
 
     d3.selectAll('.ceos')
       .each(stackedBar);
@@ -130,13 +148,13 @@ document.addEventListener('DOMContentLoaded', function () {
     var barHolder = parent
                       .append('div')
                       .attr('class','bar');
-    
+
     if (parent.attr('class') === 'year-bar o-grid-row') {
       barHolder.attr('data-o-grid-colspan', '8 S9');
     } else {
       barHolder.attr('data-o-grid-colspan', '5 S6 M7 L8');
     }
-      
+
     barHolder
       .append('svg')
       .attr('width', 450)
@@ -174,8 +192,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var stackData = stackLayout(dataRow, ['base', 'cashbonus', 'other']);
 
-    var maxVal = d3.max(spreadsheetData, function(d) {return +d.total; });
-  
+    var maxVal = d3.max(spreadsheetData.filter(function(d){
+      return d.year.fy === chartYear;
+    }), function(d) {return +d.total; });
+
+
 
     var scale = d3.scale.linear() // set the scale of the charts
       .domain([0, maxVal]);
@@ -209,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .enter()
     .append('div')
     .attr('class', 'bio')
-    .attr('id', function(d) { 
+    .attr('id', function(d) {
       var linkname = d.split(' ');
       return linkname[0] + linkname[1]; })
     .each(drawPersonHistory);
@@ -219,12 +240,16 @@ document.addEventListener('DOMContentLoaded', function () {
   //slider event
   var axis = d3.svg.axis().ticks(5).tickFormat(d3.format('d'));
 
+  function selectYear(year) {
+    d3.select('.key-title').text('Breakdown of pay, ' + year);
+    d3.select('.chart').html('');
+    d3.select('.chart').call(drawChart, year);
+  }
+
   function createSlider () {
     d3.select('.slider').call(d3.slider().axis(axis).min(2009).max(2014).step(1).value(chartYear)
       .on('slide', function(evt, value) {
-        d3.select('.key-title').text('Breakdown of pay, ' + value);
-        d3.select('.chart').html('');
-        d3.select('.chart').call(drawChart, value);
+        selectYear(value);
       }));
   }
 
@@ -241,6 +266,6 @@ document.addEventListener('DOMContentLoaded', function () {
         createSlider();
       }, 200);
   };
-  
+
 
 });
