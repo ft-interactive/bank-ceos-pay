@@ -221,6 +221,10 @@ hr {
     color: oColorsGetPaletteColor('grey-tint5');
     margin-top: 12px;
     margin-bottom: 8px;
+    a {
+        text-decoration: none;
+        color: oColorsGetColorFor(link, text);
+    }
 }
 
 .ceos {
