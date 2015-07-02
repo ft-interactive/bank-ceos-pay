@@ -267,5 +267,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 200);
   };
 
+  d3.select('title').text(spreadsheet.options.introtitle);
+  d3.select('.credits').html('Graphic ' + spreadsheet.options.credits + ': <a href="' + spreadsheet.options.v2009 + '">2009</a> | <a href="' + spreadsheet.options.v2010 + '">2010</a> | <a href="' + spreadsheet.options.v2011 + '">2011</a> | <a href="' + spreadsheet.options.v2012 + '">2012</a> | <a href="' + spreadsheet.options.v2013 + '">2013</a>');
 
 });

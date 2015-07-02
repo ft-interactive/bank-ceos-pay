@@ -1,9 +1,11 @@
 $o-grid-is-silent: false;
+$o-assets-global-path: 'https://build.origami.ft.com/files/';
 
 @import "o-grid/main";
 
 @import 'o-fonts/main';
 @import 'o-colors/main';
+@import 'o-footer/main';
 
 @import 'functions';
 @import 'var';
@@ -72,6 +74,10 @@ html {
       text-align: center;
       line-height: 1.35em;
       margin: 0 auto 1em;
+      a {
+         color: oColorsGetColorFor(link, text);
+         text-decoration: none;
+      }
     }
     .slider-holder {
         width: 95%;
@@ -85,12 +91,17 @@ html {
 }
 
 
-.bio-panel {
+.bio-panel,
+.credits {
     float: none;
     margin: 0 auto;
     max-width: 600px;
 }
 
+.credits a {
+     color: oColorsGetColorFor(link, text);
+     text-decoration: none;    
+}
 .bio-chart {
     margin-bottom: 6px;
 }
@@ -455,4 +466,13 @@ hr {
             opacity: 1;
         }
     }
+}
+
+.credits {
+    font-size: 12px;
+    color: oColorsGetPaletteColor('pink-tint5');
+    line-height: 18px;
+}
+.o-footer {
+    border-top: none;
 }
