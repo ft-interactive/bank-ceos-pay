@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
     return d.year.fy;
   });
 
+  var startYear = d3.min(spreadsheet.data, function(d){
+    return d.year.fy;
+  });
+
   var chartYear = spreadsheet.options.chartYear = parseInt(spreadsheet.options.chartYear) || latestDataYear;
 
   document.querySelector('main').innerHTML = mainTemplate(spreadsheet.options);
@@ -247,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function createSlider () {
-    d3.select('.slider').call(d3.slider().axis(axis).min(2009).max(2014).step(1).value(chartYear)
+    d3.select('.slider').call(d3.slider().axis(axis).min(startYear).max(chartYear).step(1).value(chartYear)
       .on('slide', function(evt, value) {
         selectYear(value);
       }));
@@ -268,6 +272,20 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   d3.select('title').text(spreadsheet.options.introtitle);
-  d3.select('.credits').html('Graphic ' + spreadsheet.options.credits + ': <a href="' + spreadsheet.options.v2009 + '">2009</a> | <a href="' + spreadsheet.options.v2010 + '">2010</a> | <a href="' + spreadsheet.options.v2011 + '">2011</a> | <a href="' + spreadsheet.options.v2012 + '">2012</a> | <a href="' + spreadsheet.options.v2013 + '">2013</a>');
+
+  function writeCredits (options) {
+    var dataLength = chartYear - startYear;
+    var creditHtml = 'Graphic ' + spreadsheet.options.credits + ': ';
+
+    for(var i = 0; i < dataLength; i++) {
+      creditHtml += '<a href="' + spreadsheet.options['v' + startYear] + '">' + startYear + '</a> | ';
+      startYear++; 
+    }
+
+    var creditHtmlTrimmed = creditHtml.substr(0, creditHtml.length -2);
+    return creditHtmlTrimmed;
+  }
+
+  d3.select('.credits').html(writeCredits(spreadsheet.options))
 
 });
