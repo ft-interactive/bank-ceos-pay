@@ -251,6 +251,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function createSlider () {
+    console.log(startYear)
+    d3.select('.slider').html('');
+    d3.select('.slider').attr('class', 'slider');
     d3.select('.slider').call(d3.slider().axis(axis).min(startYear).max(chartYear).step(1).value(chartYear)
       .on('slide', function(evt, value) {
         selectYear(value);
@@ -266,7 +269,6 @@ document.addEventListener('DOMContentLoaded', function () {
           clearTimeout(timeOut);
 
       timeOut = setTimeout(function(){
-        d3.select('.slider').html('');
         createSlider();
       }, 200);
   };
@@ -278,8 +280,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var creditHtml = 'Graphic ' + spreadsheet.options.credits + ': ';
 
     for(var i = 0; i < dataLength; i++) {
-      creditHtml += '<a href="' + spreadsheet.options['v' + startYear] + '">' + startYear + '</a> | ';
-      startYear++; 
+      creditHtml += '<a href="' + spreadsheet.options['v' + Number(startYear + i)]  + '">' + Number(startYear + i) + '</a> | ';
     }
 
     var creditHtmlTrimmed = creditHtml.substr(0, creditHtml.length -2);
