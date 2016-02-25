@@ -183,11 +183,11 @@ document.addEventListener('DOMContentLoaded', function () {
       var returnArray = [];
       for(var i = 0; i<propertiesArray.length; i++){
         returnArray.push({
-          startPos:start,
-          value:object[propertiesArray[i]],
-          class:propertiesArray[i]
+          startPos: start,
+          value: (object[propertiesArray[i]] || 0),
+          class: propertiesArray[i]
         });
-        start += object[propertiesArray[i]];
+        start += (object[propertiesArray[i]] || 0);
       }
       return returnArray;
     }
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .enter()
       .append('rect')
       .attr({
-        x:function(d){ return scale(d.startPos); },
+        x: function (d) { return scale(d.startPos); },
         y:function(d) { if(parent.attr('class') === 'year-bar') { return 1; } else { return 3; } },
         height: function(d) { if(parent.attr('class') === 'year-bar') { return 14; } else { return 24; } },
         width:function(d){ return scale(d.value); },
@@ -251,7 +251,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function createSlider () {
-    console.log(startYear)
     d3.select('.slider').html('');
     d3.select('.slider').attr('class', 'slider');
     d3.select('.slider').call(d3.slider().axis(axis).min(startYear).max(chartYear).step(1).value(chartYear)
