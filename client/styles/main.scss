@@ -101,7 +101,7 @@ html {
 
 .credits a {
      color: oColorsGetColorFor(link, text);
-     text-decoration: none;    
+     text-decoration: none;
 }
 .bio-chart {
     margin-bottom: 6px;
@@ -473,7 +473,4 @@ hr {
     font-size: 12px;
     color: oColorsGetPaletteColor('pink-tint5');
     line-height: 18px;
-}
-.o-footer {
-    border-top: 0;
 }

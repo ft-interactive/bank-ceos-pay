@@ -1,16 +1,12 @@
 {
-  "name": "origami-product-boilerplate",
+  "name": "starter-kit",
   "private": true,
   "dependencies": {
-    "d3": "~3.5.5",
-    "normalize.css": "~3.0.2",
     "o-colors": "~2.4.7",
-    "o-hoverable": "~1.1.0",
     "o-fonts": "~1.6.4",
+    "o-footer": "~3.2.3",
     "o-grid": "~3.1.7",
-    "o-footer": "~3.0.3"
-  },
-  "resolutions": {
-    "o-colors": ">=2.5.0 <4"
+    "o-hoverable": "~1.1.0",
+    "d3": "^3.5.17"
   }
 }
