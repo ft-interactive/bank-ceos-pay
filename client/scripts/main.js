@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var dataLength = chartYear - startYear;
     var creditHtml = 'Graphic ' + spreadsheet.options.credits + ': ';
 
-    for(var i = 0; i < dataLength; i++) {
+    for(var i = -4; i < dataLength; i++) {
       creditHtml += '<a href="' + spreadsheet.options['v' + Number(startYear + i)]  + '">' + Number(startYear + i) + '</a> | ';
     }
 
