@@ -161,7 +161,6 @@ html {
 #main-pic {
     float: left;
     margin-right: 12px;
-    margin-bottom: 12px;
     img {
       width: 80px;
     }
@@ -231,11 +230,13 @@ hr {
     font-weight: 200;
     line-height: 23px;
     color: oColorsGetPaletteColor('grey-tint5');
-    margin-top: 12px;
     margin-bottom: 8px;
     a {
         text-decoration: none;
         color: oColorsGetColorFor(link, text);
+    }
+    p {
+      margin-top: 0;
     }
 }
 

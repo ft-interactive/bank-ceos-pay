@@ -77,16 +77,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var parentNode = d3.select(this);
 
     parentNode.append('div')
+      .attr('id', 'profile-name')
+      .text(function(d) { return d; });
+
+    parentNode.append('div')
       .attr('id', 'main-pic')
         .append('img')
         .attr('src', function(d) {
           return ceoLookup[d].ceo.imageurl;
         });
-
-    parentNode.append('div')
-      .attr('id', 'profile-name')
-      .text(function(d) { return d; });
-
 
     parentNode.append('div')
       .attr('id', 'profile-txt')
