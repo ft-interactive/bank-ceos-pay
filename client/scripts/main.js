@@ -103,26 +103,28 @@ document.addEventListener('DOMContentLoaded', function () {
   // //By year stuff
 
 
-  function drawChart(parent, value){
-    if(!value) value = chartYear;
-    parent
-      .selectAll('.ceos')
-      .data(spreadsheetData.filter(function(d){
-        return d.year.fy === value;
-      }).sort(sortTotal))
-      .enter()
-      .append('div').attr('class','ceos o-grid-row')
-      .on('click', function(d) { return document.getElementById(d.first + d.last).scrollIntoView(); });
+  function drawChart (parent, value) {
+    if (!value) value = chartYear;
+
+    parent.selectAll('.ceos')
+        .data(spreadsheetData.filter(function(d){
+          return d.year.fy === value;
+        }).sort(sortTotal))
+      .enter().append('div')
+        .attr('class','ceos o-grid-row')
+        .style('width', '100%')
+        .on('click', function (d) {
+          return document.getElementById(d.first + d.last).scrollIntoView();
+        });
+
+    d3.selectAll('.ceos').append('div')
+        .attr('class', 'ceo')
+        .attr('data-o-grid-colspan', '4 M3');
 
     d3.selectAll('.ceos')
-      .append('div')
-      .attr('class', 'ceo')
-      .attr('data-o-grid-colspan', '4 M3');
-
-
-    d3.selectAll('.ceos')
-      .each(stackedBar);
+        .each(stackedBar);
   }
+
 // width="400" height="50" viewbox="0 0 400 50" preserveAspectRatio="none"
   function stackedBar(dataRow, simple){
     var parent = d3.select(this); // this refers to the .ceos divs
