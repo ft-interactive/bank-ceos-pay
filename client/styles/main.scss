@@ -56,6 +56,7 @@ html {
 .main-panel {
     // width:55%;
     float: none;
+
     // margin: 0 auto 24px;
     h1 {
       font-family: $serif-display;
@@ -64,16 +65,16 @@ html {
       font-style: normal;
       width: 100%;
       text-align: center;
-      margin-top: 0;
+      margin-top: 10px;
       margin-bottom: 1rem;
     }
     .introtext {
       font-family: $serif;
-      font-size: 1em;
-      color: oColorsGetPaletteColor('grey-tint5');
+      font-size: 1.2em;
+      color: oColorsGetPaletteColor('grey-tint3');
       max-width: 600px;
       text-align: center;
-      line-height: 1.35em;
+      line-height: 1.3em;
       margin: 0 auto 1em;
       a {
          color: oColorsGetColorFor(link, text);
@@ -397,11 +398,15 @@ hr {
     .main-panel {
       h1 {
         font-size: 3em;
+        margin-top: 30px;
+        margin-bottom: 20px;
       }
       .introtext {
-        font-size: 1.2em;
-        line-height: 1.5em;
+        font-size: 1.5em;
+        line-height: 1.2em;
         margin-bottom: 1.5em;
+        color: oColorsGetPaletteColor('grey-tint3');
+        max-width: 780px;
       }
       .slider-holder {
         width: 50%;
