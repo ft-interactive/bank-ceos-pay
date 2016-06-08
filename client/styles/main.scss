@@ -19,6 +19,7 @@ body {
   margin: 0;
   border: 0;
   font-family: font(MetricWeb);
+  -webkit-font-smoothing: antialiased;
 }
 
 
@@ -181,6 +182,7 @@ a:hover {
     margin-right: 12px;
     img {
       width: 80px;
+      border-radius: 3px;
     }
 }
 
@@ -200,9 +202,19 @@ a:hover {
 
 #profile-name {
     font-family: $sans;
-    font-size: 24px;
-    color: #712428;
-    margin-bottom: 4px;
+    font-size: 26px;
+    color: oColorsGetPaletteColor('grey-tint5');
+   
+}
+
+.company-name{
+     color: oColorsGetPaletteColor('grey-tint2');
+     font-size: 0.9em;
+     margin: 0 0 1em;
+     text-transform: uppercase;
+     font-weight: 600;
+     -webkit-font-smoothing: antialiased;
+     letter-spacing: 0.03em;
 }
 
 .top-link {
@@ -243,11 +255,11 @@ hr {
 
 
 #profile-txt {
-    font-family: $sans;
+    font-family: Clarion, Georgia, "Times New Roman", Times, serif;
     font-size: 17px;
     font-weight: 200;
-    line-height: 23px;
-    color: oColorsGetPaletteColor('grey-tint5');
+    line-height: 25px;
+    color: oColorsGetPaletteColor('grey-tint4');
     margin-bottom: 8px;
     a {
         text-decoration: none;
@@ -424,6 +436,7 @@ hr {
         line-height: 1.2em;
         margin-bottom: 1em;
         color: oColorsGetPaletteColor('grey-tint3');
+         -webkit-font-smoothing: antialiased;
         max-width: 780px;
       }
       .slider-holder {
@@ -446,12 +459,11 @@ hr {
 
     #main-pic {
       img {
-        width: 128px;
+        width: 100px;
+        border-radius: 5px;
       }
     }
-    #profile-name {
-      font-size: 30px;
-    }
+  
     #company {
       font-size: 21px;
     }
