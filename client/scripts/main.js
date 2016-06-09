@@ -95,7 +95,15 @@ document.addEventListener('DOMContentLoaded', function () {
     enterSelection.append('div')
         .attr('class', 'ceo-year')
         .attr('data-o-grid-colspan', '2')
-        .text(function(d) { return d.year.fy; }); // add the name;
+        .text(function(d) {
+          if (d.asterisk == 'a') {
+            return d.year.fy + '*';
+          } else if (d.asterisk == 'd') {
+            return d.year.fy + '†';
+          } else {
+            return d.year.fy;
+          }
+        });
 
     parentNode.selectAll('.year-bar').each(stackedBar, true); //true make the thing 'simple'
   }
@@ -152,7 +160,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if(!simple){
       var infoholder = d3.selectAll('.ceo');
       infoholder.append('div').attr('class', 'ceo-name')
-      .text(function(d) { return d.first + ' ' + d.last; }); // add the name
+      .text(function(d) {
+        if (d.asterisk == 'a') {
+          return d.first + ' ' + d.last + '*';
+        } else if (d.asterisk == 'd') {
+          return d.first + ' ' + d.last + '†';
+        } else {
+          return d.first + ' ' + d.last;
+        }
+      }); // add the name
       infoholder.append('div').attr('class', 'small-pic')
                 .append('img').attr('src', function(d) { return ceoLookup[d.first + ' ' + d.last].ceo.imageurl; });
     }
