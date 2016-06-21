@@ -272,8 +272,7 @@ hr {
 }
 
 .ceos {
-    position: relative;
-    top: 10px;
+    position: absolute;
     width: 100%;
     background-color: oColorsGetPaletteColor('pink-tint1');
     height: 34px;
@@ -299,6 +298,14 @@ hr {
     border-left-color: #712428;
 }
 
+.ceo-rank {
+  display: inline-block;
+  font-family: $sans;
+  color: oColorsGetPaletteColor('grey-tint5');
+  font-weight: 600;
+  width: 21px !important;
+}
+
 .ceo-name {
     float: left;
     font-family: $sans;
@@ -320,6 +327,7 @@ hr {
 .chart {
     // float: left;
     // width: 100%;
+    height: 840px;
     margin-bottom: 20px;
 }
 
