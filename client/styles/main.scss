@@ -1,12 +1,12 @@
 $o-grid-is-silent: false;
+$o-labels-is-silent: false;
 $o-assets-global-path: 'https://build.origami.ft.com/v2/files/';
 
-@import "o-grid/main";
-
+@import 'o-grid/main';
 @import 'o-fonts/main';
 @import 'o-colors/main';
 @import 'o-footer/main';
-
+@import 'o-labels/main';
 @import 'functions';
 @import 'var';
 @import 'fonts';
@@ -298,16 +298,16 @@ hr {
     border-left-color: #712428;
 }
 
-.ceo-rank {
-  display: inline-block;
-  font-family: $sans;
-  color: oColorsGetPaletteColor('grey-tint5');
+.o-labels.ceo-rank {
+  display: table;
+  width: 23px;
+  margin-right: 4px;
   font-weight: 600;
-  width: 21px !important;
 }
 
 .ceo-name {
     float: left;
+    width: 100%;
     font-family: $sans;
     color: oColorsGetPaletteColor('grey-tint5');
     font-size: 15px;

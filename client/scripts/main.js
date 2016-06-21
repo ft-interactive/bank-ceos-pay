@@ -179,15 +179,13 @@ document.addEventListener('DOMContentLoaded', function () {
       var infoholder = d3.selectAll('.ceo');
 
       infoholder.append('div')
-          .attr('class', 'ceo-name')
-        .append('span')
-          .attr('class', 'ceo-rank')
+          .attr('class', 'o-labels ceo-rank')
           .text(function (d, i) {
-            return i + 1 + '. ';
+            return i + 1;
           });
 
-      infoholder.select('.ceo-name')
-        .append('span')
+      infoholder.append('div')
+          .attr('class', 'ceo-name')
           .text(function (d, i) {
             if (d.asterisk == 'a') {
               return d.first + ' ' + d.last + '*';
@@ -265,29 +263,44 @@ document.addEventListener('DOMContentLoaded', function () {
           return d.year.fy === value;
         }).sort(sortTotal), key);
 
+    rebind.select('.ceo-name')
+        .text(function (d, i) {
+          if (d.asterisk == 'a') {
+            return d.first + ' ' + d.last + '*';
+          } else if (d.asterisk == 'd') {
+            return d.first + ' ' + d.last + '†';
+          }
+          return d.first + ' ' + d.last;
+        });
+
     // Transition row positions
     d3.transition()
-        .delay(150)
-        .duration(3000)
+        .duration(300)
         .each(function () {
           rebind.transition()
+              .style('opacity', 0.8)
+            .transition()
+              .delay(300)
+              .duration(3700)
               .style('top', function (d, i) {
-                console.log(i + d.last);
                 return 6 + (i * 40) + 'px';
               })
+            .transition()
+              .duration(300)
+              .style('opacity', 1);
         });
 
     // Fade out rankings then fade in updated ones
     d3.transition()
-        .duration(150)
+        .duration(300)
         .each(function () {
           rebind.select('.ceo-rank')
             .transition()
               .style('opacity', 0)
             .transition()
-              .delay(3000)
+              .delay(4000)
               .text(function (d, i) {
-                return i + 1 + '. ';
+                return i + 1;
               })
               .style('opacity', 1);
         });
@@ -312,8 +325,8 @@ document.addEventListener('DOMContentLoaded', function () {
     parent.select('svg').selectAll('.stack-rectangle')
         .data(stackData)
       .transition()
-        .delay(150)
-        .duration(3000)
+        .delay(300)
+        .duration(4000)
         .attr({
           x: function (d) {
             return scale(d.startPos);
@@ -323,13 +336,14 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         });
 
+    // Fade out totals then fade in updated ones
     parent.select('.ceo-total')
       .transition()
-        .duration(150)
+        .duration(300)
         .style('opacity', 0)
       .transition()
-        .delay(3000)
-        .duration(150)
+        .delay(4000)
+        .duration(300)
         .text(function (d) {
           return convertMillion(d.total);
         })
