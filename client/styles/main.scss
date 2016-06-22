@@ -284,7 +284,6 @@ hr {
     float: left;
     height: 34px;
     background-color: oColorsGetPaletteColor('pink-tint1');
-    margin-bottom: 1px;
     cursor: pointer;
     border-left: 0;
     display: -webkit-flex;
@@ -307,10 +306,10 @@ hr {
 
 .ceo-name {
     float: left;
-    width: 100%;
     font-family: $sans;
     color: oColorsGetPaletteColor('grey-tint5');
     font-size: 15px;
+    margin-right: auto;
     padding-left: 0;
     pointer-events: none;
 }
@@ -321,6 +320,7 @@ hr {
     img {
         width: 30px;
         height: 30px;
+        vertical-align: middle;
     }
 }
 
