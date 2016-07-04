@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .data(stackData)
       .transition()
         .delay(300)
-        .duration(4000)
+        .duration(300)
         .attr({
           x: function (d) {
             return scale(d.startPos);
