@@ -57,7 +57,7 @@ html {
 .main-panel {
     // width:55%;
     float: none;
-    margin-top: 6px;
+    margin-top: 16px;
     .o-typography-flyline__link,
     .article__byline a {
       color: #9e2f50;
@@ -474,6 +474,7 @@ hr {
     display: block;
   }
   .main-panel {
+    margin-top: 6px;
     h1 {
       font-size: 42px;
       margin-top: 6px;
