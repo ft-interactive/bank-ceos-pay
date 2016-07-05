@@ -57,16 +57,49 @@ html {
 .main-panel {
     // width:55%;
     float: none;
-
-    // margin: 0 auto 24px;
+    margin-top: 6px;
+    .o-typography-flyline__link,
+    .article__byline a {
+      color: #9e2f50;
+      text-transform: none;
+      text-decoration: none;
+      font-weight: 600;
+      &:hover {
+        border-bottom-color: #4f1828;
+        color: #4f1828;
+        border-bottom-style: dotted;
+        border-bottom-width: 1px;
+      }
+    }
+    .o-typography-flyline__link {
+      font-size: 18px;
+    }
+    .article__byline {
+      margin-right: 10px;
+    }
+    .article__timestamp {
+      font-size: 13px;
+      line-height: 1.2em;
+      color: #8b572a;
+      text-transform: uppercase;
+    }
+    p {
+      text-align: left;
+      margin: 12px 0;
+    }
     h1 {
       font-family: $serif-display;
       font-size: 2em;
       font-weight: normal;
       font-style: normal;
       width: 100%;
-      margin-top: 10px;
-      margin-bottom: 1rem;
+      padding-top: 16px;
+      margin-bottom: 8px;
+      border-top: 1px solid #e9decf;
+      margin-top: 8px;
+    }
+    p.introtext {
+      text-align: left;
     }
     .introtext {
       font-family: $serif-display, Georgia, serif;
@@ -82,8 +115,11 @@ html {
     }
 
     .share-links {
-        text-align: center;
-        margin-bottom: 30px;
+        // text-align: center;
+        // margin-bottom: 30px;
+        float: right;
+        position: relative;
+        bottom: 16px;
     }
 
     .share-links__link:hover {
@@ -441,7 +477,6 @@ hr {
     h1 {
       font-size: 42px;
       margin-top: 6px;
-      margin-bottom: 20px;
     }
     .introtext {
       font-size: 18px;
@@ -519,10 +554,16 @@ hr {
 
 @include oGridRespondTo(M) {
   .main-panel {
+    margin-top: 16px;
+    .o-typography-flyline__link {
+      font-size: 20px;
+    }
+    p {
+      text-align: center;
+    }
     h1 {
       font-size: 50px;
       margin-top: 10px;
-      margin-bottom: 20px;
       text-align: center;
     }
     .introtext {
@@ -536,8 +577,7 @@ hr {
   .main-panel {
     h1 {
       font-size: 56px;
-      margin-top: 16px;
-      margin-bottom: 20px;
+      padding-top: 30px;
     }
     .introtext {
       font-size: 24px;
