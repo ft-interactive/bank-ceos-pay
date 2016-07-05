@@ -119,7 +119,7 @@ html {
         // margin-bottom: 30px;
         float: right;
         position: relative;
-        bottom: 16px;
+        bottom: 12px;
     }
 
     .share-links__link:hover {
@@ -486,6 +486,9 @@ hr {
       color: oColorsGetPaletteColor('grey-tint3');
        -webkit-font-smoothing: antialiased;
       max-width: 780px;
+    }
+    .share-links {
+        bottom: 14px;
     }
     .slider-holder {
       width: 50%;
