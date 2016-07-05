@@ -65,16 +65,14 @@ html {
       font-weight: normal;
       font-style: normal;
       width: 100%;
-      text-align: center;
       margin-top: 10px;
       margin-bottom: 1rem;
     }
     .introtext {
-      font-family: $serif;
+      font-family: $serif-display, Georgia, serif;
       font-size: 1.3em;
       color: oColorsGetPaletteColor('grey-tint3');
       max-width: 600px;
-      text-align: center;
       line-height: 1.3em;
       margin: 0 auto 0.5em;
       a {
@@ -188,7 +186,7 @@ a:hover {
 }
 
 #rank {
-    font-family: Clarion, Georgia, "Times New Roman", Times, serif;
+    font-family: Georgia, serif;
     font-size: 48px;
     color: oColorsGetPaletteColor('pink-tint4');
     margin-bottom: 4px;
@@ -256,7 +254,7 @@ hr {
 
 
 #profile-txt {
-    font-family: Clarion, Georgia, "Times New Roman", Times, serif;
+    font-family: Georgia, serif;
     font-size: 17px;
     font-weight: 200;
     line-height: 25px;
@@ -268,6 +266,11 @@ hr {
     }
     p {
       margin-top: 0;
+    }
+    small {
+      font-style: italic;
+      margin-top: 6px;
+      display: block;
     }
 }
 
@@ -430,89 +433,119 @@ hr {
     left: 2px;
 }
 
-@include oGridRespondTo($from: S) {
-    .small-pic {
+@include oGridRespondTo(S) {
+  .small-pic {
+    display: block;
+  }
+  .main-panel {
+    h1 {
+      font-size: 42px;
+      margin-top: 6px;
+      margin-bottom: 20px;
+    }
+    .introtext {
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 1em;
+      color: oColorsGetPaletteColor('grey-tint3');
+       -webkit-font-smoothing: antialiased;
+      max-width: 780px;
+    }
+    .slider-holder {
+      width: 50%;
+      float: right;
+      height: 50px;
+    }
+  }
+
+  hr {
+    margin-bottom: 36px;
+  }
+
+  #rank {
+    font-size: 54px;
+    .pay {
+      display: none;
+    }
+  }
+
+  #main-pic {
+    img {
+      width: 100px;
+      border-radius: 5px;
+    }
+  }
+
+  #company {
+    font-size: 21px;
+  }
+
+  .table-holder {
       display: block;
+  }
+  .ceo {
+      width: 180px;
+      border-left: 5px solid;
+      border-left-color: transparent;
+      transition: border-left-color 0.3s;
+  }
+  .ceo-name {
+    min-width: 108px;
+    padding-left: 4px;
+  }
+  .key-item {
+      float: left;
+  }
+  #ft-header {
+    height: 50px;
+    background-color: oColorsGetColorFor(page, background);
+    width: 100%;
+    z-index: 50;
+    overflow: hidden;
+    text-align: center;
+    border-bottom: 1px solid #cec6b9;
+    margin-bottom: 20px;
+    a > img {
+        height: 20px;
+        margin-top: 13px;
+        opacity: 0.8;
+        transition: opacity 0.3s;
     }
-    .main-panel {
-      h1 {
-        font-size: 3em;
-        margin-top: 30px;
-        margin-bottom: 20px;
-      }
-      .introtext {
-        font-size: 1.5em;
-        line-height: 1.2em;
-        margin-bottom: 1em;
-        color: oColorsGetPaletteColor('grey-tint3');
-         -webkit-font-smoothing: antialiased;
-        max-width: 780px;
-      }
-      .slider-holder {
-        width: 50%;
-        float: right;
-        height: 50px;
-        }
+    a > img:hover {
+        opacity: 1;
     }
-
-    hr {
-      margin-bottom: 36px;
-    }
-
-    #rank {
-      font-size: 54px;
-      .pay {
-        display: none;
-      }
-    }
-
-    #main-pic {
-      img {
-        width: 100px;
-        border-radius: 5px;
-      }
-    }
-
-    #company {
-      font-size: 21px;
-    }
-
-    .table-holder {
-        display: block;
-    }
-    .ceo {
-        width: 180px;
-        border-left: 5px solid;
-        border-left-color: transparent;
-        transition: border-left-color 0.3s;
-    }
-    .ceo-name {
-      min-width: 108px;
-      padding-left: 4px;
-    }
-    .key-item {
-        float: left;
-    }
-    #ft-header {
-        height: 50px;
-        background-color: oColorsGetColorFor(page, background);
-        width: 100%;
-        z-index: 50;
-        overflow: hidden;
-        text-align: center;
-        border-bottom: 1px solid #cec6b9;
-        margin-bottom: 20px;
-        a > img {
-            height: 20px;
-            margin-top: 13px;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-        a > img:hover {
-            opacity: 1;
-        }
-    }
+  }
 }
+
+@include oGridRespondTo(M) {
+  .main-panel {
+    h1 {
+      font-size: 50px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .introtext {
+      font-size: 22px;
+      line-height: 26px;
+    }
+  }
+}
+
+@include oGridRespondTo(L) {
+  .main-panel {
+    h1 {
+      font-size: 56px;
+      margin-top: 16px;
+      margin-bottom: 20px;
+    }
+    .introtext {
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
+}
+
 
 .credits {
     font-size: 12px;
