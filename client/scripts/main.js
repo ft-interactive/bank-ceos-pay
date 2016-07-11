@@ -138,12 +138,14 @@ document.addEventListener('DOMContentLoaded', function () {
         .style('width', '100%')
         .style('top', function (d, i) {
           return 6 + (i * 40) + 'px';
-        })
-        .on('click', function (d) {
-          return document.getElementById(d.first + d.last).scrollIntoView();
         });
 
-    d3.selectAll('.ceos').append('div')
+    d3.selectAll('.ceos').append('a')
+        .attr('class', 'ceo-anchor')
+        .attr('href', function (d) {
+          return '#' + d.first + d.last;
+        })
+      .append('div')
         .attr('class', 'ceo')
         .attr('data-o-grid-colspan', '4 M3');
 
@@ -311,6 +313,12 @@ document.addEventListener('DOMContentLoaded', function () {
           return i + 1;
         })
         .style('opacity', 1);
+
+    // Update anchors
+    rebind.select('.ceo-anchor')
+        .attr('href', function (d) {
+          return '#' + d.first + d.last;
+        })
   }
 
   function updateStackedBar (dataRow) {
@@ -400,4 +408,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
   d3.select('.credits').html(writeCredits(spreadsheet.options))
 
+});
+
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $('a').on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
 });

@@ -8,7 +8,8 @@
     "o-grid": "~3.1.7",
     "o-hoverable": "~1.1.0",
     "d3": "^3.5.17",
-    "o-labels": "^1.0.5"
+    "o-labels": "^1.0.5",
+    "jquery": "^3.1.0"
   },
   "resolutions": {
     "o-colors": ">=2.5.0 <4"

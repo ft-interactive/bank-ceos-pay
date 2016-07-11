@@ -12,27 +12,29 @@ $o-assets-global-path: 'https://build.origami.ft.com/v2/files/';
 @import 'fonts';
 @import 'slider';
 
-
 body {
   @include oColorsFor(page, background);
-
+  height: 100%;
   margin: 0;
   border: 0;
   font-family: font(MetricWeb);
   -webkit-font-smoothing: antialiased;
 }
 
-
 html {
     width: 100%;
+    height: 100%;
     border-top: 0;
     -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
+}
+
+main {
+  height: 100%;
 }
 
 #main-content {
     position: relative;
 }
-
 
 #ft-header {
     height: 40px;
