@@ -332,7 +332,6 @@ document.addEventListener('DOMContentLoaded', function () {
     parent.select('svg').selectAll('.stack-rectangle')
         .data(stackData)
       .transition()
-        .delay(300)
         .duration(300)
         .attr({
           x: function (d) {
