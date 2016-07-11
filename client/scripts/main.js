@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // //By year stuff
   function key (d) {
-    return d.last;
+    return d.key;
   }
 
   function drawChart (parent, value) {
@@ -263,7 +263,10 @@ document.addEventListener('DOMContentLoaded', function () {
           return d.year.fy === value;
         }).sort(sortTotal), key);
 
-    rebind.select('.ceo-name')
+    // Update CEO names
+    rebind.transition()
+        .delay(3100)
+      .select('.ceo-name')
         .text(function (d, i) {
           if (d.asterisk == 'a') {
             return d.first + ' ' + d.last + '*';
@@ -273,37 +276,41 @@ document.addEventListener('DOMContentLoaded', function () {
           return d.first + ' ' + d.last;
         });
 
-    // Transition row positions
-    d3.transition()
-        .duration(300)
-        .each(function () {
-          rebind.transition()
-              .style('opacity', 0.8)
-            .transition()
-              .delay(300)
-              .duration(3700)
-              .style('top', function (d, i) {
-                return 6 + (i * 40) + 'px';
-              })
-            .transition()
-              .duration(300)
-              .style('opacity', 1);
+    rebind.transition()
+        .delay(3100)
+      .select('.small-pic').select('img')
+        .attr('src', function (d) {
+          return ceoLookup[d.first + ' ' + d.last].ceo.imageurl;
         });
 
-    // Fade out rankings then fade in updated ones
-    d3.transition()
+    // Transition row positions
+    rebind.transition()
         .duration(300)
-        .each(function () {
-          rebind.select('.ceo-rank')
-            .transition()
-              .style('opacity', 0)
-            .transition()
-              .delay(4000)
-              .text(function (d, i) {
-                return i + 1;
-              })
-              .style('opacity', 1);
-        });
+        .style('opacity', 0.8)
+      .transition()
+        .delay(function (d, i) {
+          return 300 + (i * 100);
+        })
+        .duration(1000)
+        .style('top', function (d, i) {
+          return 6 + (i * 40) + 'px';
+        })
+      .transition()
+        .delay(3100)
+        .duration(300)
+        .style('opacity', 1);
+
+    // Fade out rankings then fade in updated ones
+    rebind.select('.ceo-rank')
+      .transition()
+        .duration(300)
+        .style('opacity', 0)
+      .transition()
+        .delay(3100)
+        .text(function (d, i) {
+          return i + 1;
+        })
+        .style('opacity', 1);
   }
 
   function updateStackedBar (dataRow) {
@@ -342,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .duration(300)
         .style('opacity', 0)
       .transition()
-        .delay(4000)
+        .delay(3100)
         .duration(300)
         .text(function (d) {
           return convertMillion(d.total);
