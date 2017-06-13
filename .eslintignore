@@ -1,6 +1,3 @@
 /bower_components/
 /dist/
 /.tmp/
-/client/scripts/d3-slider.js
-/client/scripts/main.js
-/client/scripts/top.js
