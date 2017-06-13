@@ -11,15 +11,14 @@ export default () => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date(),
 
-  headline: 'Politics and the English Language',
+  headline: 'Bank chief executives\' pay 2013-2016',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Political language is designed to make lies sound truthful' +
-           'and murder respectable, and to give an appearance of solidity to pure wind',
+  summary: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
 
   topic: {
-    name: 'Starter Kit',
-    url: '/foo',
+    name: 'Banks',
+    url: 'https://www.ft.com/companies/banks',
   },
 
   relatedArticle: {
@@ -39,12 +38,12 @@ export default () => ({ // eslint-disable-line
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
-    { name: 'Author One', url: '/foo/bar' },
-    { name: 'Author Two' },
+    { name: 'Laura Noonan', url: 'https://www.ft.com/stream/ed45acb9-9da0-35fd-94ae-184c05d5ba36' },
+    { name: 'David Blood', url: 'https://www.ft.com/david-blood' },
   ],
 
   // Appears in the HTML <title>
-  title: '',
+  title: 'Bank chief executives\' pay 2013-2016',
 
   // meta data
   description: '',
