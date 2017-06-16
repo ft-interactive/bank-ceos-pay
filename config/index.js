@@ -1,3 +1,4 @@
+import axios from 'axios';
 import article from './article';
 import getFlags from './flags';
 import getOnwardJourney from './onward-journey';
@@ -6,6 +7,16 @@ export default async () => {
   const d = await article();
   const flags = await getFlags();
   const onwardJourney = await getOnwardJourney();
+  const berthaId = '1Yqxt-9H6K8oTs3ZPlFhJJBKx9e3zT7i6RoW-ctH-RqA';
+  const endpoint = `http://bertha.ig.ft.com/view/publish/gss/${berthaId}/data`;
+  let data;
+
+  try {
+    const res = await axios(endpoint);
+    data = res.data;
+  } catch (e) {
+    console.log('Error getting content from Bertha', e);
+  }
   /*
   An experimental demo that gets content from the API
   and overwrites some model values. This requires the Link File
@@ -32,5 +43,6 @@ export default async () => {
     ...d,
     flags,
     onwardJourney,
+    data,
   };
 };
