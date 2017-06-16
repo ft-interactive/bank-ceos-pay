@@ -1,19 +1,12 @@
-/*
-  TODO: delete this comment
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-  This file is where you bootstrap your JS code
-  For example import stuff here:
+function App() {
+  return (
+    <p>Hi, I&apos;m React.</p>
+  );
+}
 
-  import {select} from 'd3-selection';
-  import myComponent from './components/my-component';
+const reactApp = <App />;
 
-  Split logical parts of you project into components e.g.
-
-  /client
-    - /components
-        - /component-name
-            - styles.scss
-            - index.js
-            - template.html
-
-*/
+ReactDOM.render(reactApp, document.getElementById('react-app'));
