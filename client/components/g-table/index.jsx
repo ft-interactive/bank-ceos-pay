@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import oGrid from 'o-grid'; // eslint-disable-line
 import PropTypes from 'prop-types';
+import { format as d3Format } from 'd3-format';
 import { Table, Column, Cell } from 'fixed-data-table-2';
 import { throttle } from 'lodash';
-import { format as d3Format } from 'd3-format';
 
 class GTable extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class GTable extends Component {
 
     this.state = {
       data: props.data,
-      containerWidth: 625,
+      containerWidth: 0,
       rowHeight: 50,
       headerHeight: 50,
     };
@@ -25,8 +26,12 @@ class GTable extends Component {
   }
 
   handleResize() {
+    const width = this.node.parentNode.offsetWidth;
+    const padding = oGrid.getCurrentGutter().slice(0, 2);
+    const containerWidth = width - padding;
+
     this.setState({
-      containerWidth: this.node.parentNode.offsetWidth,
+      containerWidth,
     });
   }
 
