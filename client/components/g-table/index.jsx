@@ -38,7 +38,7 @@ class GTable extends Component {
   render() {
     const executiveNameCol = (
       <Column
-        header={<Cell>Executive name</Cell>}
+        header={<Cell className="cell">Executive name</Cell>}
         cell={props => (
           <Cell
             {...props}
@@ -54,7 +54,7 @@ class GTable extends Component {
 
     const companyNameCol = (
       <Column
-        header={<Cell>Institution</Cell>}
+        header={<Cell className="cell">Institution</Cell>}
         cell={props => (
           <Cell
             {...props}
@@ -70,7 +70,7 @@ class GTable extends Component {
 
     const totalCol = (
       <Column
-        header={<Cell>Total ($)</Cell>}
+        header={<Cell className="cell">Total ($)</Cell>}
         cell={props => (
           <Cell
             {...props}
