@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import oGrid from 'o-grid'; // eslint-disable-line
 import PropTypes from 'prop-types';
-import { format as d3Format } from 'd3-format';
 import { Table, Column, Cell } from 'fixed-data-table-2';
 import { throttle } from 'lodash';
 
@@ -16,7 +15,6 @@ class GTable extends Component {
       headerHeight: 50,
     };
     this.handleResize = this.handleResize.bind(this);
-    this.d3Format = d3Format(',');
   }
 
   componentDidMount() {
@@ -76,7 +74,7 @@ class GTable extends Component {
             {...props}
             className="cell number-cell"
           >
-            {this.d3Format(this.state.data[props.rowIndex].y2016.total)}
+            {`${+(this.state.data[props.rowIndex].y2016.total / 1000000).toFixed(1)}m`}
           </Cell>
         )}
         flexGrow={1}
