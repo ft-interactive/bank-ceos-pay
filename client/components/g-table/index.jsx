@@ -24,9 +24,7 @@ class GTable extends Component {
   }
 
   handleResize() {
-    const width = this.node.parentNode.offsetWidth;
-    const padding = oGrid.getCurrentGutter().slice(0, 2);
-    const containerWidth = width - padding;
+    const containerWidth = this.node.parentNode.offsetWidth;
 
     this.setState({
       containerWidth,
@@ -83,10 +81,7 @@ class GTable extends Component {
     );
 
     return (
-      <div
-        className="table-container"
-        ref={node => (this.node = node)}
-      >
+      <div ref={node => (this.node = node)}>
         <Table
           rowHeight={this.state.rowHeight}
           headerHeight={this.state.headerHeight}
