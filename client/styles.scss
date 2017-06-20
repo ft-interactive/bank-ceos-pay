@@ -3,3 +3,11 @@
 @import 'components/core/main';
 @import 'fixed-data-table-2/dist/fixed-data-table';
 @import 'components/g-table/main';
+
+body {
+  background-color: #fff1e0;
+}
+
+.table-container {
+  width: 100%;
+}

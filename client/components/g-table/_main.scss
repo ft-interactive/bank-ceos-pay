@@ -1,3 +1,9 @@
+@import 'o-forms/main';
+
+@include oForms;
+
+$o-icons-is-silent: false;
+
 .fixedDataTableCellLayout_main {
   border: none;
 }
@@ -47,15 +53,15 @@
   background-color: #f2dfce;
 }
 
-.article-body div[data-o-grid-colspan]{
-  .table-container {
-    max-width: 100%;
-  }
+.article-body .fixedDataTableLayout_main.public_fixedDataTable_main {
+  max-width: 100%;
 }
 
 .cell {
   font-size: 14px;
+  color: #333;
   &.header-cell {
+    color: #4d4845;
     .fixedDataTableCellLayout_wrap3 {
       vertical-align: bottom;
     }

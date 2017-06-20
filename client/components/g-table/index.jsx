@@ -13,8 +13,26 @@ class GTable extends Component {
       containerWidth: 0,
       rowHeight: 50,
       headerHeight: 50,
+      radioChecked: '2016',
     };
     this.handleResize = this.handleResize.bind(this);
+    this.handleRadioInput = this.handleRadioInput.bind(this);
+  }
+
+  componentWillMount() {
+    const filteredData = this.props.data.map((d) => {
+      const obj = {
+        ceo: d.ceo,
+        company: d.company,
+        year: d.y2016,
+      };
+
+      return obj;
+    });
+
+    filteredData.sort((a, b) => b.year.total - a.year.total);
+
+    this.setState({ data: filteredData });
   }
 
   componentDidMount() {
@@ -24,12 +42,37 @@ class GTable extends Component {
   }
 
   handleResize() {
-    const containerWidth = this.node.parentNode.offsetWidth;
+    const containerWidth = this.node.offsetWidth;
+
+    console.log(containerWidth);
+
+    this.setState({ containerWidth });
+  }
+
+  handleRadioInput(el) {
+    console.log(el.target.value);
+    const filterTerm = el.target.value;
+    const filteredData = this.props.data.map((d) => {
+      const year = `y${filterTerm}`;
+
+      // const thing = d.y2016;
+      const obj = {
+        ceo: d.ceo,
+        company: d.company,
+        year: d[year],
+      };
+
+      return obj;
+    });
+
+    filteredData.sort((a, b) => b.year.total - a.year.total);
 
     this.setState({
-      containerWidth,
+      data: filteredData,
+      radioChecked: filterTerm,
     });
   }
+
 
   render() {
     const executiveNameCol = (
@@ -72,7 +115,7 @@ class GTable extends Component {
             {...props}
             className="cell number-cell"
           >
-            {+(this.state.data[props.rowIndex].y2016.total / 1000000).toFixed(1)}
+            {+(this.state.data[props.rowIndex].year.total / 1000000).toFixed(1)}
           </Cell>
         )}
         flexGrow={1}
@@ -81,18 +124,98 @@ class GTable extends Component {
     );
 
     return (
-      <div ref={node => (this.node = node)}>
-        <Table
-          rowHeight={this.state.rowHeight}
-          headerHeight={this.state.headerHeight}
-          rowsCount={this.state.data.length}
-          width={this.state.containerWidth}
-          height={(this.state.data.length * this.state.rowHeight) + this.state.headerHeight + 2}
+      <div>
+        <div data-o-grid-colspan="12 S11 Scenter M9 L8 XL7">
+          <div className="o-forms o-forms--wide">
+            <label
+              className="o-forms__label"
+              htmlFor="all"
+            >
+              Select year
+            </label>
+
+            <input
+              type="radio"
+              onChange={this.handleRadioInput}
+              checked={this.state.radioChecked === '2016'}
+              value="2016"
+              className="o-forms__radio"
+              id="2016"
+            />
+
+            <label
+              htmlFor="2016"
+              className="o-forms__label"
+            >
+              2016
+            </label>
+
+            <input
+              type="radio"
+              onChange={this.handleRadioInput}
+              checked={this.state.radioChecked === '2015'}
+              value="2015"
+              className="o-forms__radio"
+              id="2015"
+            />
+
+            <label
+              htmlFor="2015"
+              className="o-forms__label"
+            >
+              2015
+            </label>
+
+            <input
+              type="radio"
+              onChange={this.handleRadioInput}
+              checked={this.state.radioChecked === '2014'}
+              value="2014"
+              className="o-forms__radio"
+              id="2014"
+            />
+
+            <label
+              htmlFor="2014"
+              className="o-forms__label"
+            >
+              2014
+            </label>
+
+            <input
+              type="radio"
+              onChange={this.handleRadioInput}
+              checked={this.state.radioChecked === '2013'}
+              value="2013"
+              className="o-forms__radio"
+              id="2013"
+            />
+
+            <label
+              htmlFor="2013"
+              className="o-forms__label"
+            >
+              2013
+            </label>
+          </div>
+        </div>
+
+        <div
+          data-o-grid-colspan="12 S11 Scenter"
+          ref={node => (this.node = node)}
         >
-          {executiveNameCol}
-          {companyNameCol}
-          {totalCol}
-        </Table>
+          <Table
+            rowHeight={this.state.rowHeight}
+            headerHeight={this.state.headerHeight}
+            rowsCount={this.state.data.length}
+            width={this.state.containerWidth}
+            height={(this.state.data.length * this.state.rowHeight) + this.state.headerHeight + 2}
+          >
+            {executiveNameCol}
+            {companyNameCol}
+            {totalCol}
+          </Table>
+        </div>
       </div>
     );
   }
