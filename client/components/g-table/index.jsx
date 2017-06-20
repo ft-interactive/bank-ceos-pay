@@ -66,13 +66,13 @@ class GTable extends Component {
 
     const totalCol = (
       <Column
-        header={<Cell className="cell header-cell">Total ($)</Cell>}
+        header={<Cell className="cell header-cell">Total ($m)</Cell>}
         cell={props => (
           <Cell
             {...props}
             className="cell number-cell"
           >
-            {`${+(this.state.data[props.rowIndex].y2016.total / 1000000).toFixed(1)}m`}
+            {+(this.state.data[props.rowIndex].y2016.total / 1000000).toFixed(1)}
           </Cell>
         )}
         flexGrow={1}
