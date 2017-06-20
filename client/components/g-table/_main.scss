@@ -55,13 +55,18 @@
 
 .cell {
   font-size: 14px;
+  &.header-cell {
+    .fixedDataTableCellLayout_wrap3 {
+      vertical-align: bottom;
+    }
+  }
+  &.number-cell {
+    -webkit-font-feature-settings: 'tnum';
+    -moz-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+  }
 }
 
-.number-cell {
-  -webkit-font-feature-settings: 'tnum';
-  -moz-font-feature-settings: 'tnum';
-  font-feature-settings: 'tnum';
-}
 
 @media (min-width: 490px) {
   .cell {
