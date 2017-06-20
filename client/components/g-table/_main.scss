@@ -71,6 +71,12 @@ $o-icons-is-silent: false;
     -moz-font-feature-settings: 'tnum';
     font-feature-settings: 'tnum';
   }
+  img {
+    margin-right: 8px;
+    border: 2px solid #999189;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
 }
 
 

@@ -11,7 +11,7 @@ class GTable extends Component {
     this.state = {
       data: props.data,
       containerWidth: 0,
-      rowHeight: 50,
+      rowHeight: 60,
       headerHeight: 50,
       radioChecked: '2016',
     };
@@ -44,13 +44,10 @@ class GTable extends Component {
   handleResize() {
     const containerWidth = this.node.offsetWidth;
 
-    console.log(containerWidth);
-
     this.setState({ containerWidth });
   }
 
   handleRadioInput(el) {
-    console.log(el.target.value);
     const filterTerm = el.target.value;
     const filteredData = this.props.data.map((d) => {
       const year = `y${filterTerm}`;
@@ -75,6 +72,10 @@ class GTable extends Component {
 
 
   render() {
+    const windowWidth = window.innerWidth;
+    const executiveNameColWidth = windowWidth < 490 ? 185
+      : windowWidth < 1220 ? 201
+      : 218;
     const executiveNameCol = (
       <Column
         header={<Cell className="cell header-cell">Executive name</Cell>}
@@ -83,36 +84,41 @@ class GTable extends Component {
             {...props}
             className="cell"
           >
+            <img
+              src={this.state.data[props.rowIndex].ceo.imgurl}
+              alt={this.state.data[props.rowIndex].ceo.name}
+              height="40"
+            />
             {this.state.data[props.rowIndex].ceo.name}
-
           </Cell>
         )}
-        flexGrow={1}
-        width={20}
+        // flexGrow={1}
+        width={executiveNameColWidth}
       />
     );
 
-    const companyNameCol = (
-      <Column
-        header={<Cell className="cell header-cell">Institution</Cell>}
-        cell={props => (
-          <Cell
-            {...props}
-            className="cell"
-          >
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={this.state.data[props.rowIndex].company.fturl}
+    const companyNameCol = windowWidth < 740 ? null
+      : (
+        <Column
+          header={<Cell className="cell header-cell">Institution</Cell>}
+          cell={props => (
+            <Cell
+              {...props}
+              className="cell"
             >
-              {this.state.data[props.rowIndex].company.name}
-            </a>
-          </Cell>
-        )}
-        flexGrow={1}
-        width={20}
-      />
-    );
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={this.state.data[props.rowIndex].company.fturl}
+              >
+                {this.state.data[props.rowIndex].company.name}
+              </a>
+            </Cell>
+          )}
+          flexGrow={1}
+          width={20}
+        />
+      );
 
     const totalCol = (
       <Column
