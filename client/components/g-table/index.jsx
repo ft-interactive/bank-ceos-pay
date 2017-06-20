@@ -84,6 +84,7 @@ class GTable extends Component {
             className="cell"
           >
             {this.state.data[props.rowIndex].ceo.name}
+
           </Cell>
         )}
         flexGrow={1}
@@ -99,7 +100,13 @@ class GTable extends Component {
             {...props}
             className="cell"
           >
-            {this.state.data[props.rowIndex].company.name}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={this.state.data[props.rowIndex].company.fturl}
+            >
+              {this.state.data[props.rowIndex].company.name}
+            </a>
           </Cell>
         )}
         flexGrow={1}
