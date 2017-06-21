@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import oGrid from 'o-grid'; // eslint-disable-line
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Table, Column, Cell } from 'fixed-data-table-2';
 import { throttle } from 'lodash';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 class GTable extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class GTable extends Component {
       rowHeight: 60,
       headerHeight: 50,
       radioChecked: '2016',
+      showHello: true,
     };
     this.handleResize = this.handleResize.bind(this);
     this.handleRadioInput = this.handleRadioInput.bind(this);
@@ -51,8 +53,6 @@ class GTable extends Component {
     const filterTerm = el.target.value;
     const filteredData = this.props.data.map((d) => {
       const year = `y${filterTerm}`;
-
-      // const thing = d.y2016;
       const obj = {
         ceo: d.ceo,
         company: d.company,
@@ -62,14 +62,18 @@ class GTable extends Component {
       return obj;
     });
 
+    this.setState({
+      radioChecked: filterTerm,
+      showHello: false,
+    });
+
     filteredData.sort((a, b) => b.year.total - a.year.total);
 
-    this.setState({
+    setTimeout(() => this.setState({
       data: filteredData,
-      radioChecked: filterTerm,
-    });
+      showHello: true,
+    }), 400);
   }
-
 
   render() {
     const windowWidth = window.innerWidth;
@@ -96,7 +100,6 @@ class GTable extends Component {
         width={executiveNameColWidth}
       />
     );
-
     const companyNameCol = windowWidth < 740 ? null
       : (
         <Column
@@ -119,7 +122,6 @@ class GTable extends Component {
           width={20}
         />
       );
-
     const totalCol = (
       <Column
         header={<Cell className="cell header-cell">Total ($m)</Cell>}
@@ -134,6 +136,22 @@ class GTable extends Component {
         flexGrow={1}
         width={20}
       />
+    );
+    const tableHeight = (this.state.data.length * this.state.rowHeight) +
+      this.state.headerHeight + 2;
+    const divStyle = { height: tableHeight };
+    const table = !this.state.showHello ? null : (
+      <Table
+        rowHeight={this.state.rowHeight}
+        headerHeight={this.state.headerHeight}
+        rowsCount={this.state.data.length}
+        width={this.state.containerWidth}
+        height={tableHeight}
+      >
+        {executiveNameCol}
+        {companyNameCol}
+        {totalCol}
+      </Table>
     );
 
     return (
@@ -216,26 +234,23 @@ class GTable extends Component {
         <div
           data-o-grid-colspan="12 S11 Scenter"
           ref={node => (this.node = node)}
+          style={divStyle}
         >
-          <Table
-            rowHeight={this.state.rowHeight}
-            headerHeight={this.state.headerHeight}
-            rowsCount={this.state.data.length}
-            width={this.state.containerWidth}
-            height={(this.state.data.length * this.state.rowHeight) + this.state.headerHeight + 2}
+          <CSSTransitionGroup
+            transitionName="example"
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={100}
           >
-            {executiveNameCol}
-            {companyNameCol}
-            {totalCol}
-          </Table>
+            {table}
+          </CSSTransitionGroup>
         </div>
       </div>
     );
   }
 }
 
-GTable.propTypes = {
-  data: PropTypes.array.isRequired, // eslint-disable-line
-};
+// GTable.propTypes = {
+//   data: PropTypes.array.isRequired, // eslint-disable-line
+// };
 
 export default GTable;
