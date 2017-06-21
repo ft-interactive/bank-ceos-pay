@@ -15,7 +15,7 @@ class GTable extends Component {
       rowHeight: 60,
       headerHeight: 50,
       radioChecked: '2016',
-      showHello: true,
+      showCellContent: true,
     };
     this.handleResize = this.handleResize.bind(this);
     this.handleRadioInput = this.handleRadioInput.bind(this);
@@ -64,22 +64,26 @@ class GTable extends Component {
 
     this.setState({
       radioChecked: filterTerm,
-      showHello: false,
+      showCellContent: false,
     });
 
     filteredData.sort((a, b) => b.year.total - a.year.total);
 
     setTimeout(() => this.setState({
       data: filteredData,
-      showHello: true,
+      showCellContent: true,
     }), 400);
   }
 
   render() {
     const windowWidth = window.innerWidth;
-    const executiveNameColWidth = windowWidth < 490 ? 185
+    const executiveNameColWidth = windowWidth < 490 ? 185 // eslint-disable-line
       : windowWidth < 1220 ? 201
       : 218;
+    const tableHeight = (this.state.data.length * this.state.rowHeight) +
+      this.state.headerHeight + 2;
+    const divStyle = { height: tableHeight };
+
     const executiveNameCol = (
       <Column
         header={<Cell className="cell header-cell">Executive name</Cell>}
@@ -88,18 +92,28 @@ class GTable extends Component {
             {...props}
             className="cell"
           >
-            <img
-              src={this.state.data[props.rowIndex].ceo.imgurl}
-              alt={this.state.data[props.rowIndex].ceo.name}
-              height="40"
-            />
-            {this.state.data[props.rowIndex].ceo.name}
+            <CSSTransitionGroup
+              transitionName="cell"
+              transitionEnterTimeout={300}
+              transitionLeaveTimeout={100}
+            >
+              {!this.state.showCellContent ? null : (
+                <div key={props.rowIndex}>
+                  <img
+                    src={this.state.data[props.rowIndex].ceo.imgurl}
+                    alt={this.state.data[props.rowIndex].ceo.name}
+                    height="40"
+                  />
+                  {this.state.data[props.rowIndex].ceo.name}
+                </div>
+              )}
+            </CSSTransitionGroup>
           </Cell>
         )}
-        // flexGrow={1}
         width={executiveNameColWidth}
       />
     );
+
     const companyNameCol = windowWidth < 740 ? null
       : (
         <Column
@@ -109,19 +123,29 @@ class GTable extends Component {
               {...props}
               className="cell"
             >
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={this.state.data[props.rowIndex].company.fturl}
+              <CSSTransitionGroup
+                transitionName="cell"
+                transitionEnterTimeout={300}
+                transitionLeaveTimeout={100}
               >
-                {this.state.data[props.rowIndex].company.name}
-              </a>
+                {!this.state.showCellContent ? null : (
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={this.state.data[props.rowIndex].company.fturl}
+                    key={props.rowIndex}
+                  >
+                    {this.state.data[props.rowIndex].company.name}
+                  </a>
+                )}
+              </CSSTransitionGroup>
             </Cell>
           )}
           flexGrow={1}
           width={20}
         />
       );
+
     const totalCol = (
       <Column
         header={<Cell className="cell header-cell">Total ($m)</Cell>}
@@ -130,17 +154,25 @@ class GTable extends Component {
             {...props}
             className="cell number-cell"
           >
-            {+(this.state.data[props.rowIndex].year.total / 1000000).toFixed(1)}
+            <CSSTransitionGroup
+              transitionName="cell"
+              transitionEnterTimeout={300}
+              transitionLeaveTimeout={100}
+            >
+              {!this.state.showCellContent ? null : (
+                <div key={props.rowIndex}>
+                  {+(this.state.data[props.rowIndex].year.total / 1000000).toFixed(1)}
+                </div>
+              )}
+            </CSSTransitionGroup>
           </Cell>
         )}
         flexGrow={1}
         width={20}
       />
     );
-    const tableHeight = (this.state.data.length * this.state.rowHeight) +
-      this.state.headerHeight + 2;
-    const divStyle = { height: tableHeight };
-    const table = !this.state.showHello ? null : (
+
+    const table = (
       <Table
         rowHeight={this.state.rowHeight}
         headerHeight={this.state.headerHeight}
@@ -236,13 +268,7 @@ class GTable extends Component {
           ref={node => (this.node = node)}
           style={divStyle}
         >
-          <CSSTransitionGroup
-            transitionName="example"
-            transitionEnterTimeout={300}
-            transitionLeaveTimeout={100}
-          >
-            {table}
-          </CSSTransitionGroup>
+          {table}
         </div>
       </div>
     );
