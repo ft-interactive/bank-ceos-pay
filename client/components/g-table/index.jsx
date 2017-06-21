@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import oGrid from 'o-grid'; // eslint-disable-line
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Table, Column, Cell } from 'fixed-data-table-2';
 import { throttle } from 'lodash';
 import { CSSTransitionGroup } from 'react-transition-group';
@@ -275,8 +275,8 @@ class GTable extends Component {
   }
 }
 
-// GTable.propTypes = {
-//   data: PropTypes.array.isRequired, // eslint-disable-line
-// };
+GTable.propTypes = {
+  data: PropTypes.array.isRequired, // eslint-disable-line
+};
 
 export default GTable;
