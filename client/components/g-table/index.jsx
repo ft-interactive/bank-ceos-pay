@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
 import oGrid from 'o-grid'; // eslint-disable-line
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Table, Column, Cell } from 'fixed-data-table-2';
 import { throttle } from 'lodash';
 import { CSSTransitionGroup } from 'react-transition-group';
+import ChartCell from './chart-cell/index.jsx'; // eslint-disable-line
 
 class GTable extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: props.data,
+      data: null,
       containerWidth: 0,
       rowHeight: 60,
-      headerHeight: 50,
+      headerHeight: 60,
       radioChecked: '2016',
       showCellContent: true,
+      showDeferredCol: true,
     };
     this.handleResize = this.handleResize.bind(this);
     this.handleRadioInput = this.handleRadioInput.bind(this);
@@ -61,6 +63,7 @@ class GTable extends Component {
 
       return obj;
     });
+    const showDeferredCol = filterTerm === '2016';
 
     this.setState({
       radioChecked: filterTerm,
@@ -72,6 +75,7 @@ class GTable extends Component {
     setTimeout(() => this.setState({
       data: filteredData,
       showCellContent: true,
+      showDeferredCol,
     }), 400);
   }
 
@@ -141,7 +145,7 @@ class GTable extends Component {
               </CSSTransitionGroup>
             </Cell>
           )}
-          flexGrow={1}
+          flexGrow={2}
           width={20}
         />
       );
@@ -167,8 +171,67 @@ class GTable extends Component {
             </CSSTransitionGroup>
           </Cell>
         )}
-        flexGrow={1}
+        width={90}
+      />
+    );
+
+    const compensationCol = (
+      <Column
+        header={<Cell className="cell header-cell">{this.state.radioChecked} compensation</Cell>}
+        cell={props => (
+          <Cell
+            {...props}
+            className="cell"
+          >
+            <CSSTransitionGroup
+              transitionName="cell"
+              transitionEnterTimeout={300}
+              transitionLeaveTimeout={100}
+            >
+              {!this.state.showCellContent ? null : (
+                <ChartCell
+                  {...props}
+                  data={this.state.data}
+                  chartType="proportional-stacked-bar"
+                />
+              )}
+            </CSSTransitionGroup>
+          </Cell>
+        )}
+        flexGrow={2}
         width={20}
+      />
+    );
+
+    const deferredCol = (
+      <Column
+        header={
+          <Cell className="cell header-cell">
+            {this.state.radioChecked} deferred<br />compensation
+          </Cell>
+        }
+        cell={props => (
+          <Cell
+            {...props}
+            className="cell chart-cell"
+          >
+            <CSSTransitionGroup
+              transitionName="cell"
+              transitionEnterTimeout={300}
+              transitionLeaveTimeout={100}
+            >
+              {!this.state.showCellContent ? null : (
+                <ChartCell
+                  {...props}
+                  data={this.state.data}
+                  chartType="bubble"
+                />
+              )}
+            </CSSTransitionGroup>
+          </Cell>
+        )}
+        // flexGrow={2}
+        width={127}
       />
     );
 
@@ -183,6 +246,10 @@ class GTable extends Component {
         {executiveNameCol}
         {companyNameCol}
         {totalCol}
+        {compensationCol}
+        {!this.state.showDeferredCol ? null :
+          deferredCol
+        }
       </Table>
     );
 

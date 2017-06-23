@@ -88,6 +88,7 @@
     "start": "nodemon --watch gulpfile.babel.js --exec 'gulp watch'"
   },
   "dependencies": {
+    "d3": "^4.9.1",
     "fixed-data-table-2": "^0.7.17",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",

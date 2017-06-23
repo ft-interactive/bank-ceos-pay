@@ -67,6 +67,7 @@ $o-icons-is-silent: false;
     }
   }
   &.number-cell {
+    text-align: right;
     -webkit-font-feature-settings: 'tnum';
     -moz-font-feature-settings: 'tnum';
     font-feature-settings: 'tnum';
