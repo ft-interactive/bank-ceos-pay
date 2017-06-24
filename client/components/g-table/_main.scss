@@ -73,22 +73,53 @@ $o-icons-is-silent: false;
     font-feature-settings: 'tnum';
   }
   img {
+    display: inline-block;
     margin-right: 8px;
     border: 2px solid #999189;
     border-radius: 50%;
     vertical-align: middle;
+  }
+  .executive-name {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .o-typography-link-topic {
+    font-size: 11px;
+    color: #9e2f50;
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 375px) {
+  .cell {
+    &.header-cell {
+      .fixedDataTableCellLayout_wrap3 {
+        padding-right: 8px;
+      }
+    }
+    &.number-cell {
+      .fixedDataTableCellLayout_wrap3 {
+        padding-right: 8px;
+      }
+    }
   }
 }
 
 @media (min-width: 490px) {
   .cell {
     font-size: 16px;
+    .o-typography-link-topic {
+      font-size: 13px;
+    }
   }
 }
 
 @media (min-width: 1220px) {
   .cell {
     font-size: 18px;
+    .o-typography-link-topic {
+      font-size: 15px;
+    }
   }
 }
 

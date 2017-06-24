@@ -81,9 +81,17 @@ class GTable extends Component {
 
   render() {
     const windowWidth = window.innerWidth;
-    const executiveNameColWidth = windowWidth < 490 ? 185 // eslint-disable-line
-      : windowWidth < 1220 ? 201
-      : 218;
+    const executiveNameColWidth = windowWidth < 490 ? 211 // eslint-disable-line
+      : windowWidth < 740 ? 211 // eslint-disable-line
+      : windowWidth < 980 ? 161 // eslint-disable-line
+      : windowWidth < 1220 ? 44
+      : 0;
+    const totalColWidth = windowWidth < 375 ? 82 // eslint-disable-line
+      : windowWidth < 490 ? 82 // eslint-disable-line
+      : windowWidth < 740 ? 82 // eslint-disable-line
+      : windowWidth < 980 ? 82 // eslint-disable-line
+      : windowWidth < 1220 ? 82
+      : 90;
     const tableHeight = (this.state.data.length * this.state.rowHeight) +
       this.state.headerHeight + 2;
     const divStyle = { height: tableHeight };
@@ -108,47 +116,26 @@ class GTable extends Component {
                     alt={this.state.data[props.rowIndex].ceo.name}
                     height="40"
                   />
-                  {this.state.data[props.rowIndex].ceo.name}
+                  <div className="executive-name">
+                    {this.state.data[props.rowIndex].ceo.name}<br />
+                    <a
+                      className="o-typography-link-topic o-typography-link-topic--small"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={this.state.data[props.rowIndex].company.fturl}
+                    >
+                      {this.state.data[props.rowIndex].company.name}
+                    </a>
+                  </div>
                 </div>
               )}
             </CSSTransitionGroup>
           </Cell>
         )}
+        flexGrow={1}
         width={executiveNameColWidth}
       />
     );
-
-    const companyNameCol = windowWidth < 740 ? null
-      : (
-        <Column
-          header={<Cell className="cell header-cell">Institution</Cell>}
-          cell={props => (
-            <Cell
-              {...props}
-              className="cell"
-            >
-              <CSSTransitionGroup
-                transitionName="cell"
-                transitionEnterTimeout={300}
-                transitionLeaveTimeout={100}
-              >
-                {!this.state.showCellContent ? null : (
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={this.state.data[props.rowIndex].company.fturl}
-                    key={props.rowIndex}
-                  >
-                    {this.state.data[props.rowIndex].company.name}
-                  </a>
-                )}
-              </CSSTransitionGroup>
-            </Cell>
-          )}
-          flexGrow={2}
-          width={20}
-        />
-      );
 
     const totalCol = (
       <Column
@@ -171,13 +158,20 @@ class GTable extends Component {
             </CSSTransitionGroup>
           </Cell>
         )}
-        width={90}
+        // flexGrow={1}
+        width={totalColWidth}
       />
     );
 
     const compensationCol = (
       <Column
-        header={<Cell className="cell header-cell">{this.state.radioChecked} compensation</Cell>}
+        header={(
+          <Cell className="cell header-cell">
+            {windowWidth < 398 ? `${this.state.radioChecked} comp.`
+              : `${this.state.radioChecked} compensation`
+            }
+          </Cell>
+        )}
         cell={props => (
           <Cell
             {...props}
@@ -199,7 +193,7 @@ class GTable extends Component {
           </Cell>
         )}
         flexGrow={2}
-        width={20}
+        width={72}
       />
     );
 
@@ -244,10 +238,11 @@ class GTable extends Component {
         height={tableHeight}
       >
         {executiveNameCol}
-        {companyNameCol}
         {totalCol}
-        {compensationCol}
-        {!this.state.showDeferredCol ? null :
+        {windowWidth < 375 ? null :
+          compensationCol
+        }
+        {!this.state.showDeferredCol || windowWidth < 490 ? null :
           deferredCol
         }
       </Table>

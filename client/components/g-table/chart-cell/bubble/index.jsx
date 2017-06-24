@@ -7,7 +7,7 @@ const Circle = ({ x, y, r }) => (
     cx={x}
     cy={y}
     r={r}
-    style={{ fill: '#aecc70' }}
+    style={{ fill: '#f34d5b' }}
   />
 );
 

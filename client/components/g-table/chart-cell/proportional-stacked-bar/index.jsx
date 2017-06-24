@@ -82,7 +82,7 @@ ProportionalStackedBar.propTypes = {
   rowIndex: PropTypes.number,
   data: PropTypes.array.isRequired, // eslint-disable-line
   gWidth: PropTypes.number, // eslint-disable-line
-  gHeight: PropTypes.number,
+  gHeight: PropTypes.number, // eslint-disable-line
 };
 
 ProportionalStackedBar.defaultProps = {
