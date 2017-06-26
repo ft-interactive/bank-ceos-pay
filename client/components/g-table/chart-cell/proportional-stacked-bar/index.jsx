@@ -16,8 +16,7 @@ class ProportionalStackedBar extends Component {
   constructor(props) {
     super(props);
 
-    this.barWidth = d3.scaleLinear()
-      .domain([0, 100]);
+    this.barWidth = d3.scaleLinear();
     this.barHeight = d3.scaleLinear();
     this.colors = ['#1e558c', '#9ee5f3', '#1e8fcc', '#b3325d', '#ff75a3'];
   }
@@ -32,14 +31,15 @@ class ProportionalStackedBar extends Component {
 
   updateD3(props) {
     this.barWidth
+      .domain([0, d3.max(props.data, d => d.year.total)])
       .range([0, props.gWidth]);
 
     this.barValues = [
-      (props.data[props.rowIndex].year.salary / props.data[props.rowIndex].year.total) * 100,
-      (props.data[props.rowIndex].year.bonus / props.data[props.rowIndex].year.total) * 100,
-      (props.data[props.rowIndex].year.stock / props.data[props.rowIndex].year.total) * 100,
-      (props.data[props.rowIndex].year.options / props.data[props.rowIndex].year.total) * 100,
-      (props.data[props.rowIndex].year.other / props.data[props.rowIndex].year.total) * 100,
+      props.data[props.rowIndex].year.salary,
+      props.data[props.rowIndex].year.bonus,
+      props.data[props.rowIndex].year.stock,
+      props.data[props.rowIndex].year.options,
+      props.data[props.rowIndex].year.other,
     ];
 
     this.barValues = this.barValues.reduce((acc, cur) => {
@@ -57,7 +57,7 @@ class ProportionalStackedBar extends Component {
     });
 
     this.barHeight
-      .domain([d3.min(props.data, i => i.year.total), d3.max(props.data, i => i.year.total)])
+      .domain([d3.min(props.data, d => d.year.total), d3.max(props.data, d => d.year.total)])
       .range([10, props.gHeight]);
   }
 
@@ -68,7 +68,7 @@ class ProportionalStackedBar extends Component {
           <Bars
             key={i}
             width={this.barWidth(d.width)}
-            height={this.barHeight(this.props.data[this.props.rowIndex].year.total)}
+            height={this.props.gHeight}
             x={this.barWidth(d.x)}
             color={this.colors[i]}
           />

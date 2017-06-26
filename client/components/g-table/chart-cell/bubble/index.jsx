@@ -28,7 +28,7 @@ class Bubble extends Component {
 
   updateD3(props) {
     this.scale
-      .domain([0, d3.max(props.data, i => i.year.deferredbalances)])
+      .domain([0, d3.max(props.data, d => d.year.deferredbalances)])
       .range([5, props.gHeight / 2]);
   }
 

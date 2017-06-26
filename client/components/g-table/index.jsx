@@ -81,16 +81,17 @@ class GTable extends Component {
 
   render() {
     const windowWidth = window.innerWidth;
-    const executiveNameColWidth = windowWidth < 490 ? 211 // eslint-disable-line
-      : windowWidth < 740 ? 211 // eslint-disable-line
-      : windowWidth < 980 ? 161 // eslint-disable-line
-      : windowWidth < 1220 ? 44
-      : 0;
-    const totalColWidth = windowWidth < 375 ? 82 // eslint-disable-line
-      : windowWidth < 490 ? 82 // eslint-disable-line
-      : windowWidth < 740 ? 82 // eslint-disable-line
-      : windowWidth < 980 ? 82 // eslint-disable-line
-      : windowWidth < 1220 ? 82
+    const executiveNameColWidth = windowWidth >= 1220 ? 262 // eslint-disable-line
+      : windowWidth >= 980 ? 237 // eslint-disable-line
+      : windowWidth >= 740 ? 237 // eslint-disable-line
+      : windowWidth >= 490 ? 237 // eslint-disable-line
+      : windowWidth >= 375 ? 211 // eslint-disable-line
+      : 220;
+    const totalColWidth = windowWidth >= 1220 ? 90 // eslint-disable-line
+      : windowWidth >= 980 ? 82 // eslint-disable-line
+      : windowWidth >= 740 ? 82 // eslint-disable-line
+      : windowWidth >= 490 ? 82 // eslint-disable-line
+      : windowWidth >= 375 ? 82 // eslint-disable-line
       : 90;
     const tableHeight = (this.state.data.length * this.state.rowHeight) +
       this.state.headerHeight + 2;
@@ -132,7 +133,6 @@ class GTable extends Component {
             </CSSTransitionGroup>
           </Cell>
         )}
-        flexGrow={1}
         width={executiveNameColWidth}
       />
     );
@@ -158,7 +158,6 @@ class GTable extends Component {
             </CSSTransitionGroup>
           </Cell>
         )}
-        // flexGrow={1}
         width={totalColWidth}
       />
     );
@@ -192,7 +191,7 @@ class GTable extends Component {
             </CSSTransitionGroup>
           </Cell>
         )}
-        flexGrow={2}
+        flexGrow={1}
         width={72}
       />
     );
@@ -224,7 +223,6 @@ class GTable extends Component {
             </CSSTransitionGroup>
           </Cell>
         )}
-        // flexGrow={2}
         width={127}
       />
     );
@@ -241,9 +239,6 @@ class GTable extends Component {
         {totalCol}
         {windowWidth < 375 ? null :
           compensationCol
-        }
-        {!this.state.showDeferredCol || windowWidth < 490 ? null :
-          deferredCol
         }
       </Table>
     );

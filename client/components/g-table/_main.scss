@@ -48,6 +48,10 @@ $o-icons-is-silent: false;
 /**
  * Table row.
  */
+.public_fixedDataTableRow_main {
+  background-color: #fff1e0;
+}
+
 .public_fixedDataTableRow_highlighted,
 .public_fixedDataTableRow_highlighted .public_fixedDataTableCell_main {
   background-color: #ffe9d7;
