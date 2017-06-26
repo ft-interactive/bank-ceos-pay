@@ -13,6 +13,8 @@ const ChartCell = (props) => {
   const width = props.width - marginLeft - marginRight;
   const height = props.height - marginTop - marginBottom;
 
+  console.log(props.width);
+
   if (props.chartType === 'proportional-stacked-bar') {
     chart = (
       <ProportionalStackedBar

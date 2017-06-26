@@ -70,6 +70,11 @@ $o-icons-is-silent: false;
       vertical-align: bottom;
     }
   }
+  &.image-cell {
+    .public_fixedDataTableCell_cellContent {
+      padding: 4px 8px;
+    }
+  }
   &.number-cell {
     text-align: right;
     -webkit-font-feature-settings: 'tnum';
@@ -89,6 +94,7 @@ $o-icons-is-silent: false;
   }
   .o-typography-link-topic {
     font-size: 11px;
+    line-height: 11px;
     color: #9e2f50;
     border-bottom: none;
   }
@@ -114,6 +120,7 @@ $o-icons-is-silent: false;
     font-size: 16px;
     .o-typography-link-topic {
       font-size: 13px;
+      line-height: 13px;
     }
   }
 }
@@ -123,6 +130,7 @@ $o-icons-is-silent: false;
     font-size: 18px;
     .o-typography-link-topic {
       font-size: 15px;
+      line-height: 15px;
     }
   }
 }

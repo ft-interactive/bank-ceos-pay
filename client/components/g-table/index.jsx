@@ -6,6 +6,20 @@ import { throttle } from 'lodash';
 import { CSSTransitionGroup } from 'react-transition-group';
 import ChartCell from './chart-cell/index.jsx'; // eslint-disable-line
 
+const windowWidth = window.innerWidth;
+const executiveNameColWidth = windowWidth >= 1220 ? 210 // eslint-disable-line
+  : windowWidth >= 980 ? 193 // eslint-disable-line
+  : windowWidth >= 740 ? 193 // eslint-disable-line
+  : windowWidth >= 490 ? 193 // eslint-disable-line
+  : windowWidth >= 375 ? 177 // eslint-disable-line
+  : 210;
+const totalColWidth = windowWidth >= 1220 ? 90 // eslint-disable-line
+  : windowWidth >= 980 ? 82 // eslint-disable-line
+  : windowWidth >= 740 ? 82 // eslint-disable-line
+  : windowWidth >= 490 ? 82 // eslint-disable-line
+  : windowWidth >= 375 ? 82 // eslint-disable-line
+  : 90;
+
 class GTable extends Component {
   constructor(props) {
     super(props);
@@ -13,8 +27,8 @@ class GTable extends Component {
     this.state = {
       data: null,
       containerWidth: 0,
-      rowHeight: 60,
-      headerHeight: 60,
+      rowHeight: 52,
+      headerHeight: 52,
       radioChecked: '2016',
       showCellContent: true,
       showDeferredCol: true,
@@ -47,8 +61,9 @@ class GTable extends Component {
 
   handleResize() {
     const containerWidth = this.node.offsetWidth;
+    const gutterWidth = windowWidth >= 740 ? 20 : 10;
 
-    this.setState({ containerWidth });
+    this.setState({ containerWidth: containerWidth - gutterWidth });
   }
 
   handleRadioInput(el) {
@@ -80,19 +95,6 @@ class GTable extends Component {
   }
 
   render() {
-    const windowWidth = window.innerWidth;
-    const executiveNameColWidth = windowWidth >= 1220 ? 262 // eslint-disable-line
-      : windowWidth >= 980 ? 237 // eslint-disable-line
-      : windowWidth >= 740 ? 237 // eslint-disable-line
-      : windowWidth >= 490 ? 237 // eslint-disable-line
-      : windowWidth >= 375 ? 211 // eslint-disable-line
-      : 220;
-    const totalColWidth = windowWidth >= 1220 ? 90 // eslint-disable-line
-      : windowWidth >= 980 ? 82 // eslint-disable-line
-      : windowWidth >= 740 ? 82 // eslint-disable-line
-      : windowWidth >= 490 ? 82 // eslint-disable-line
-      : windowWidth >= 375 ? 82 // eslint-disable-line
-      : 90;
     const tableHeight = (this.state.data.length * this.state.rowHeight) +
       this.state.headerHeight + 2;
     const divStyle = { height: tableHeight };
@@ -103,7 +105,7 @@ class GTable extends Component {
         cell={props => (
           <Cell
             {...props}
-            className="cell"
+            className="cell image-cell"
           >
             <CSSTransitionGroup
               transitionName="cell"
@@ -115,7 +117,7 @@ class GTable extends Component {
                   <img
                     src={this.state.data[props.rowIndex].ceo.imgurl}
                     alt={this.state.data[props.rowIndex].ceo.name}
-                    height="40"
+                    height="32"
                   />
                   <div className="executive-name">
                     {this.state.data[props.rowIndex].ceo.name}<br />
@@ -174,7 +176,7 @@ class GTable extends Component {
         cell={props => (
           <Cell
             {...props}
-            className="cell"
+            className="cell chart-cell"
           >
             <CSSTransitionGroup
               transitionName="cell"
@@ -192,38 +194,7 @@ class GTable extends Component {
           </Cell>
         )}
         flexGrow={1}
-        width={72}
-      />
-    );
-
-    const deferredCol = (
-      <Column
-        header={
-          <Cell className="cell header-cell">
-            {this.state.radioChecked} deferred<br />compensation
-          </Cell>
-        }
-        cell={props => (
-          <Cell
-            {...props}
-            className="cell chart-cell"
-          >
-            <CSSTransitionGroup
-              transitionName="cell"
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={100}
-            >
-              {!this.state.showCellContent ? null : (
-                <ChartCell
-                  {...props}
-                  data={this.state.data}
-                  chartType="bubble"
-                />
-              )}
-            </CSSTransitionGroup>
-          </Cell>
-        )}
-        width={127}
+        width={0}
       />
     );
 
@@ -245,83 +216,8 @@ class GTable extends Component {
 
     return (
       <div>
-        <div data-o-grid-colspan="12 S11 Scenter M9 L8 XL7">
-          <div className="o-forms o-forms--wide">
-            <label
-              className="o-forms__label"
-              htmlFor="all"
-            >
-              Select year
-            </label>
-
-            <input
-              type="radio"
-              onChange={this.handleRadioInput}
-              checked={this.state.radioChecked === '2016'}
-              value="2016"
-              className="o-forms__radio"
-              id="2016"
-            />
-
-            <label
-              htmlFor="2016"
-              className="o-forms__label"
-            >
-              2016
-            </label>
-
-            <input
-              type="radio"
-              onChange={this.handleRadioInput}
-              checked={this.state.radioChecked === '2015'}
-              value="2015"
-              className="o-forms__radio"
-              id="2015"
-            />
-
-            <label
-              htmlFor="2015"
-              className="o-forms__label"
-            >
-              2015
-            </label>
-
-            <input
-              type="radio"
-              onChange={this.handleRadioInput}
-              checked={this.state.radioChecked === '2014'}
-              value="2014"
-              className="o-forms__radio"
-              id="2014"
-            />
-
-            <label
-              htmlFor="2014"
-              className="o-forms__label"
-            >
-              2014
-            </label>
-
-            <input
-              type="radio"
-              onChange={this.handleRadioInput}
-              checked={this.state.radioChecked === '2013'}
-              value="2013"
-              className="o-forms__radio"
-              id="2013"
-            />
-
-            <label
-              htmlFor="2013"
-              className="o-forms__label"
-            >
-              2013
-            </label>
-          </div>
-        </div>
-
         <div
-          data-o-grid-colspan="12 S11 Scenter"
+          data-o-grid-colspan="12 S11 Scenter M9 L8 XL7"
           ref={node => (this.node = node)}
           style={divStyle}
         >

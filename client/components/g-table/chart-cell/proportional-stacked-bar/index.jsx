@@ -38,7 +38,6 @@ class ProportionalStackedBar extends Component {
       props.data[props.rowIndex].year.salary,
       props.data[props.rowIndex].year.bonus,
       props.data[props.rowIndex].year.stock,
-      props.data[props.rowIndex].year.options,
       props.data[props.rowIndex].year.other,
     ];
 
@@ -66,7 +65,7 @@ class ProportionalStackedBar extends Component {
       <g>
         {this.barValues.arr.map((d, i) => (
           <Bars
-            key={i}
+            key={`bar${i}`}
             width={this.barWidth(d.width)}
             height={this.props.gHeight}
             x={this.barWidth(d.x)}
