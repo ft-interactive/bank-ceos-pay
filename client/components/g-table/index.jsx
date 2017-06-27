@@ -29,12 +29,10 @@ class GTable extends Component {
       containerWidth: 0,
       rowHeight: 52,
       headerHeight: 52,
-      radioChecked: '2016',
       showCellContent: true,
       showDeferredCol: true,
     };
     this.handleResize = this.handleResize.bind(this);
-    this.handleRadioInput = this.handleRadioInput.bind(this);
   }
 
   componentWillMount() {
@@ -64,34 +62,6 @@ class GTable extends Component {
     const gutterWidth = windowWidth >= 740 ? 20 : 10;
 
     this.setState({ containerWidth: containerWidth - gutterWidth });
-  }
-
-  handleRadioInput(el) {
-    const filterTerm = el.target.value;
-    const filteredData = this.props.data.map((d) => {
-      const year = `y${filterTerm}`;
-      const obj = {
-        ceo: d.ceo,
-        company: d.company,
-        year: d[year],
-      };
-
-      return obj;
-    });
-    const showDeferredCol = filterTerm === '2016';
-
-    this.setState({
-      radioChecked: filterTerm,
-      showCellContent: false,
-    });
-
-    filteredData.sort((a, b) => b.year.total - a.year.total);
-
-    setTimeout(() => this.setState({
-      data: filteredData,
-      showCellContent: true,
-      showDeferredCol,
-    }), 400);
   }
 
   render() {
@@ -168,9 +138,7 @@ class GTable extends Component {
       <Column
         header={(
           <Cell className="cell header-cell">
-            {windowWidth < 398 ? `${this.state.radioChecked} comp.`
-              : `${this.state.radioChecked} compensation`
-            }
+            {windowWidth < 398 ? '2016 comp.' : '2016 compensation'}
           </Cell>
         )}
         cell={props => (
