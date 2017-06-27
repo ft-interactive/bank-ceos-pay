@@ -162,7 +162,7 @@ class GTable extends Component {
           </Cell>
         )}
         flexGrow={1}
-        width={0}
+        width={20}
       />
     );
 
