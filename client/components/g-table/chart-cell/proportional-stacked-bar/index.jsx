@@ -18,7 +18,7 @@ class ProportionalStackedBar extends Component {
 
     this.barWidth = d3.scaleLinear();
     this.barHeight = d3.scaleLinear();
-    this.colors = ['#1e558c', '#9ee5f3', '#1e8fcc', '#b3325d', '#ff75a3'];
+    this.colors = ['#1e558c', '#9ee5f3', '#1e8fcc', '#b3325d', '#d9ccc3'];
   }
 
   componentWillMount() {
@@ -31,15 +31,38 @@ class ProportionalStackedBar extends Component {
 
   updateD3(props) {
     this.barWidth
-      .domain([0, d3.max(props.data, d => d.year.total)])
+      .domain([0, d3.max(props.data, (d) => {
+        if (this.props.compensation && !this.props.shares) {
+          return d.year.total;
+        } else if (!this.props.compensation && this.props.shares) {
+          return d.year.shares;
+        }
+
+        return d.year.total + d.year.shares;
+      })])
       .range([0, props.gWidth]);
 
-    this.barValues = [
-      props.data[props.rowIndex].year.salary,
-      props.data[props.rowIndex].year.bonus,
-      props.data[props.rowIndex].year.stock,
-      props.data[props.rowIndex].year.other,
-    ];
+    if (this.props.compensation && !this.props.shares) {
+      this.barValues = [
+        props.data[props.rowIndex].year.salary,
+        props.data[props.rowIndex].year.bonus,
+        props.data[props.rowIndex].year.stock,
+        props.data[props.rowIndex].year.other,
+      ];
+    } else if (!this.props.compensation && this.props.shares) {
+      this.barValues = [
+        props.data[props.rowIndex].year.shares,
+      ];
+    } else {
+      this.barValues = [
+        props.data[props.rowIndex].year.salary,
+        props.data[props.rowIndex].year.bonus,
+        props.data[props.rowIndex].year.stock,
+        props.data[props.rowIndex].year.other,
+        props.data[props.rowIndex].year.shares,
+      ];
+    }
+
 
     this.barValues = this.barValues.reduce((acc, cur) => {
       acc.arr.push({
@@ -63,13 +86,13 @@ class ProportionalStackedBar extends Component {
   render() {
     return (
       <g>
-        {this.barValues.arr.map((d, i) => (
+        {this.barValues.arr.map((d, i, a) => (
           <Bars
             key={`bar${i}`}
             width={this.barWidth(d.width)}
             height={this.props.gHeight}
             x={this.barWidth(d.x)}
-            color={this.colors[i]}
+            color={a.length > 1 ? this.colors[i] : this.colors[4]}
           />
         ))}
       </g>
@@ -82,6 +105,8 @@ ProportionalStackedBar.propTypes = {
   data: PropTypes.array.isRequired, // eslint-disable-line
   gWidth: PropTypes.number, // eslint-disable-line
   gHeight: PropTypes.number, // eslint-disable-line
+  compensation: PropTypes.bool.isRequired,
+  shares: PropTypes.bool.isRequired,
 };
 
 ProportionalStackedBar.defaultProps = {

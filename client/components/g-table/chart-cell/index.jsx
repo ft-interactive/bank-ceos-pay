@@ -48,13 +48,11 @@ ChartCell.propTypes = {
   chartType: PropTypes.string.isRequired,
   width: PropTypes.number,
   height: PropTypes.number,
-  rowIndex: PropTypes.number,
 };
 
 ChartCell.defaultProps = {
   width: 0,
   height: 0,
-  rowIndex: 0,
 };
 
 export default ChartCell;

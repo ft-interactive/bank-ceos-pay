@@ -6,21 +6,33 @@ const App1 = () => {
   const data = JSON.parse(document.getElementById('data').textContent);
 
   return (
-    <GTable data={data} />
+    <GTable
+      data={data}
+      compensation
+      shares={false}
+    />
   );
 };
 const App2 = () => {
   const data = JSON.parse(document.getElementById('data').textContent);
 
   return (
-    <GTable data={data} />
+    <GTable
+      data={data}
+      compensation={false}
+      shares
+    />
   );
 };
 const App3 = () => {
   const data = JSON.parse(document.getElementById('data').textContent);
 
   return (
-    <GTable data={data} />
+    <GTable
+      data={data}
+      compensation
+      shares
+    />
   );
 };
 const reactApp1 = <App1 />;
