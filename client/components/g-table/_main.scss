@@ -63,9 +63,8 @@ $o-icons-is-silent: false;
 
 .cell {
   font-size: 14px;
-  color: #333;
+  color: #33302e;
   &.header-cell {
-    color: #4d4845;
     .fixedDataTableCellLayout_wrap3 {
       vertical-align: bottom;
     }
@@ -77,6 +76,7 @@ $o-icons-is-silent: false;
   }
   &.number-cell {
     text-align: right;
+    font-weight: 600;
     -webkit-font-feature-settings: 'tnum';
     -moz-font-feature-settings: 'tnum';
     font-feature-settings: 'tnum';

@@ -154,7 +154,10 @@ class GTable extends Component {
               transitionLeaveTimeout={100}
             >
               <div key={props.rowIndex}>
-                {`${+(this.state.data[props.rowIndex].year.shares / 1000000).toFixed(1)}m`}
+                {this.state.data[props.rowIndex].year.shares > 0 ?
+                  `${+(this.state.data[props.rowIndex].year.shares / 1000000).toFixed(1)}m`
+                  : 0
+                }
               </div>
             </CSSTransitionGroup>
           </Cell>
@@ -189,11 +192,7 @@ class GTable extends Component {
 
     const compensationCol = windowWidth >= 375 ? (
       <Column
-        header={(
-          <Cell className="cell header-cell">
-            {windowWidth < 398 ? '2016 comp.' : '2016 compensation'}
-          </Cell>
-        )}
+        header={null}
         cell={props => (
           <Cell
             {...props}
@@ -221,11 +220,7 @@ class GTable extends Component {
 
     const sharesCol = windowWidth >= 375 ? (
       <Column
-        header={(
-          <Cell className="cell header-cell">
-            2016 shares
-          </Cell>
-        )}
+        header={null}
         cell={props => (
           <Cell
             {...props}
@@ -253,11 +248,7 @@ class GTable extends Component {
 
     const combinedCol = windowWidth >= 375 ? (
       <Column
-        header={(
-          <Cell className="cell header-cell">
-            2016 total
-          </Cell>
-        )}
+        header={null}
         cell={props => (
           <Cell
             {...props}
