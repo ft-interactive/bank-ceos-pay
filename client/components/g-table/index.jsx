@@ -49,10 +49,6 @@ class GTable extends Component {
     const containerWidth = this.node.offsetWidth;
     const gutterWidth = windowWidth >= 740 ? 20 : 10;
     const rowHeight = 52;
-    // const rowHeight = windowWidth >= 1220 ? 52 // eslint-disable-line
-    //   : windowWidth >= 490 ? 42 // eslint-disable-line
-    //   : windowWidth >= 375 ? 177 // eslint-disable-line
-    //   : 210;
     const executiveNameColWidth = windowWidth >= 1220 ? 210 // eslint-disable-line
       : windowWidth >= 980 ? 193 // eslint-disable-line
       : windowWidth >= 740 ? 193 // eslint-disable-line
@@ -63,8 +59,8 @@ class GTable extends Component {
       : windowWidth >= 980 ? 88 // eslint-disable-line
       : windowWidth >= 740 ? 88 // eslint-disable-line
       : windowWidth >= 490 ? 88 // eslint-disable-line
-      : windowWidth >= 375 ? 87 // eslint-disable-line
-      : 97;
+      : windowWidth >= 375 ? 52 // eslint-disable-line
+      : 87;
 
     this.setState({
       containerWidth: containerWidth - gutterWidth,
@@ -81,7 +77,7 @@ class GTable extends Component {
 
     const executiveNameCol = (
       <Column
-        header={<Cell className="cell header-cell">Executive name</Cell>}
+        header={<Cell className="cell header-cell">Executive</Cell>}
         cell={props => (
           <Cell
             {...props}

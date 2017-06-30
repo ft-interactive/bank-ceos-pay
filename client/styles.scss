@@ -11,3 +11,17 @@ body {
 .table-container {
   width: 100%;
 }
+
+.table-caption {
+  border-bottom: 2px solid #b3a9a0;
+  border-top: 2px solid #b3a9a0;
+  font-family: MetricWeb,sans-serif;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 600;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #33302e;
+}
