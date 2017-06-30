@@ -11,7 +11,7 @@ export default () => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date(),
 
-  headline: 'Bank chief executives\' pay 2013-2016',
+  headline: 'Bank chief executives\' pay 2016',
 
   // summary === standfirst (Summary is what the content API calls it)
   summary: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -43,7 +43,7 @@ export default () => ({ // eslint-disable-line
   ],
 
   // Appears in the HTML <title>
-  title: 'Bank chief executives\' pay 2013-2016',
+  title: 'Bank chief executives\' pay 2016',
 
   // meta data
   description: '',
