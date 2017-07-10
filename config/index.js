@@ -9,6 +9,7 @@ export default async () => {
   const onwardJourney = await getOnwardJourney();
   const berthaId = '1Yqxt-9H6K8oTs3ZPlFhJJBKx9e3zT7i6RoW-ctH-RqA';
   const endpoint = `http://bertha.ig.ft.com/view/publish/gss/${berthaId}/data`;
+  let cards = {};
   let data;
 
   try {
@@ -17,32 +18,36 @@ export default async () => {
   } catch (e) {
     console.log('Error getting content from Bertha', e);
   }
-  /*
-  An experimental demo that gets content from the API
-  and overwrites some model values. This requires the Link File
-  to have been published. Also next-es-interface.ft.com probably
-  isn't a reliable source. Also this has no way to prevent development
-  values being seen in productions... use with care.
 
   try {
-    const a = (await axios(`https://next-es-interface.ft.com/content/${d.id}`)).data;
-    d.headline = a.title;
-    d.byline = a.byline;
-    d.summary = a.summaries[0];
-    d.title = d.title || a.title;
-    d.description = d.description || a.summaries[1] || a.summaries[0];
-    d.publishedDate = new Date(a.publishedDate);
-    f.comments = a.comments;
-  } catch (e) {
-    console.log('Error getting content from content API');
-  }
+    cards = await Promise.all(
+      data.map(async (card) => {
+        const url = `https://ig.ft.com/onwardjourney/v1/thing/${card.y2016.topicid}/json?limit=5`;
 
-  */
+        try {
+          const res = await axios(url);
+
+          // Filter this item out.
+          card.links = res.data.items.filter(v => v.id !== d.id); // eslint-disable-line no-param-reassign
+        } catch (e) {
+          console.error(`Error getting Onward Journey for ${card.ceo.name}`);
+
+          console.log(url);
+
+          card.links = []; // eslint-disable-line no-param-reassign
+        }
+
+        return card;
+      }));
+  } catch (e) {
+    console.error(e);
+  }
 
   return {
     ...d,
     flags,
     onwardJourney,
     data,
+    cards,
   };
 };

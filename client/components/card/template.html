@@ -1,0 +1,63 @@
+{% from "components/myft-follow/button.html" import FollowButton -%}
+
+{% macro Card(i) %}
+  {% if i.ceo.name %}
+  <div class="card-position" data-o-component="o-card">
+    <h2 class="card-position__name">
+      {% if i.topicid %}
+      <a href="https://www.ft.com/stream/peopleId/{{ i.topicid }}">{{ i.ceo.name }}</a>
+
+      {{ FollowButton(i.topicid, i.ceo.name, 'people')}}{% else %}{{ i.ceo.name }}
+      {% endif %}
+    </h2>
+
+    <figure class="card-position__image">
+      <img alt="" src="https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F{{ i.picurl }}?source=ig&fit=scale-down&width=700" />
+
+      {% if i.picsource %}<figcaption class="o-typography-caption">&#xA9;{{ i.ceo.picsource }}</figcaption>{% endif %}
+    </figure>
+
+    <div class="card-position__body">
+      <p>
+        {{ i.copy | safe }}
+      </p>
+      <!-- {% if i.linkurl %}<p style="text-align:right;"><a href="{{ i.linkurl }}">Full profile</a></p>{% endif %} -->
+      {% if i.links.length > 0 %}
+      <div class="card-position__onward-headline">
+        More on {{i.ceo.name}}:
+      </div>
+      <ul class="card-position__onward-links">
+        {% for item in i.links %}
+        <li>
+          <a class="card-position__onward-link" href="//www.ft.com/content/{{ item.id }}">{{ item.title }}</a>{#{{ item.publishedDate }}#}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- {% elif i.role %}
+  <div class="card-position" style="background-color:#fff; margin-bottom:10px; padding:10px;">
+    <h1 class="card-position__position-headline">{{ i.role }}</h1>
+  </div>
+  {% endif %} -->
+{% endmacro %}
+
+<!-- <div class="demo-container demo-container--standout">
+  <div class="o-card o-card--standout o-card--image-" data-o-component="o-card">
+    <div class="o-card__image o-card__image--">
+      <img src="https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fim.ft-static.com%2Fcontent%2Fimages%2Fa60ae24b-b87f-439c-bf1b-6e54946b4cf2.img?source=o-card-demo" alt="demo image"></img>
+    </div>
+
+    <div class="o-card__content">
+      <div class="o-card__meta">
+        <a href="#" class="o-card__tag">Demo card tag</a>
+      </div>
+
+      <h2 class="o-card__heading"><a href="#">Japan sells negative yield 10-year bonds</a></h2>
+
+      <time data-o-component="o-date" class="o-date o-card__timestamp" datetime="2016-02-29T12:35:48Z">2016-02-29T12:35:48Z</time>
+    </div>
+  </div>
+</div> -->
