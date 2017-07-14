@@ -29,7 +29,7 @@ class Bubble extends Component {
   updateD3(props) {
     this.scale
       .domain([0, d3.max(props.data, d => d.year.deferredbalances)])
-      .range([5, props.gHeight / 2]);
+      .range([5, props.svgHeight / 2]);
   }
 
   render() {
@@ -37,8 +37,8 @@ class Bubble extends Component {
       !this.props.data[this.props.rowIndex].year.deferredbalances ? null :
       <g>
         <Circle
-          x={this.props.gWidth / 2}
-          y={this.props.gHeight / 2}
+          x={this.props.svgWidth / 2}
+          y={this.props.svgHeight / 2}
           r={this.scale(this.props.data[this.props.rowIndex].year.deferredbalances)}
         />
       </g>
@@ -49,14 +49,14 @@ class Bubble extends Component {
 Bubble.propTypes = {
   rowIndex: PropTypes.number,
   data: PropTypes.array.isRequired, // eslint-disable-line
-  gWidth: PropTypes.number,
-  gHeight: PropTypes.number,
+  svgWidth: PropTypes.number,
+  svgHeight: PropTypes.number,
 };
 
 Bubble.defaultProps = {
   rowIndex: 0,
-  gWidth: 0,
-  gHeight: 0,
+  svgWidth: 0,
+  svgHeight: 0,
 };
 
 Circle.propTypes = {

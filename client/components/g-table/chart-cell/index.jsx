@@ -10,15 +10,15 @@ const marginLeft = 8;
 let chart = null;
 
 const ChartCell = (props) => {
-  const width = props.width - marginLeft - marginRight;
+  const width = props.width > 0 ? props.width - marginLeft - marginRight : null;
   const height = props.height - marginTop - marginBottom;
 
   if (props.chartType === 'proportional-stacked-bar') {
     chart = (
       <ProportionalStackedBar
         {...props}
-        gWidth={width}
-        gHeight={height}
+        svgWidth={width}
+        svgHeight={height}
         data={props.data}
       />
     );
@@ -26,21 +26,14 @@ const ChartCell = (props) => {
     chart = (
       <Bubble
         {...props}
-        gWidth={width}
-        gHeight={height}
+        svgWidth={width}
+        svgHeight={height}
         data={props.data}
       />
     );
   }
 
-  return (
-    <svg
-      width={width}
-      height={height}
-    >
-      {chart}
-    </svg>
-  );
+  return chart;
 };
 
 ChartCell.propTypes = {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Table, Column, Cell } from 'fixed-data-table-2';
 import { throttle } from 'lodash';
-import { CSSTransitionGroup } from 'react-transition-group';
 import ChartCell from './chart-cell/index.jsx'; // eslint-disable-line
 
 let windowWidth = window.innerWidth;
@@ -83,30 +82,24 @@ class GTable extends Component {
             {...props}
             className="cell image-cell"
           >
-            <CSSTransitionGroup
-              transitionName="cell"
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={100}
-            >
-              <div key={props.rowIndex}>
-                <img
-                  src={this.state.data[props.rowIndex].ceo.imgurl}
-                  alt={this.state.data[props.rowIndex].ceo.name}
-                  height={Math.floor(this.state.rowHeight * 0.62)}
-                />
-                <div className="executive-name">
-                  {this.state.data[props.rowIndex].ceo.name}<br />
-                  <a
-                    className="o-typography-link-topic o-typography-link-topic--small"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={this.state.data[props.rowIndex].company.fturl}
-                  >
-                    {this.state.data[props.rowIndex].company.name}
-                  </a>
-                </div>
+            <div key={props.rowIndex}>
+              <img
+                src={this.state.data[props.rowIndex].ceo.imgurl}
+                alt={this.state.data[props.rowIndex].ceo.name}
+                height={Math.floor(this.state.rowHeight * 0.62)}
+              />
+              <div className="executive-name">
+                {this.state.data[props.rowIndex].ceo.name}<br />
+                <a
+                  className="o-typography-link-topic o-typography-link-topic--small"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={this.state.data[props.rowIndex].company.fturl}
+                >
+                  {this.state.data[props.rowIndex].company.name}
+                </a>
               </div>
-            </CSSTransitionGroup>
+            </div>
           </Cell>
         )}
         width={this.state.executiveNameColWidth}
@@ -121,15 +114,9 @@ class GTable extends Component {
             {...props}
             className="cell number-cell"
           >
-            <CSSTransitionGroup
-              transitionName="cell"
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={100}
-            >
-              <div key={props.rowIndex}>
-                {`${+(this.state.data[props.rowIndex].year.total / 1000000).toFixed(1)}m`}
-              </div>
-            </CSSTransitionGroup>
+            <div key={props.rowIndex}>
+              {`${+(this.state.data[props.rowIndex].year.total / 1000000).toFixed(1)}m`}
+            </div>
           </Cell>
         )}
         width={this.state.totalColWidth}
@@ -144,18 +131,12 @@ class GTable extends Component {
             {...props}
             className="cell number-cell"
           >
-            <CSSTransitionGroup
-              transitionName="cell"
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={100}
-            >
-              <div key={props.rowIndex}>
-                {this.state.data[props.rowIndex].year.shares > 0 ?
-                  `${+(this.state.data[props.rowIndex].year.shares / 1000000).toFixed(1)}m`
-                  : 0
-                }
-              </div>
-            </CSSTransitionGroup>
+            <div key={props.rowIndex}>
+              {this.state.data[props.rowIndex].year.shares > 0 ?
+                `${+(this.state.data[props.rowIndex].year.shares / 1000000).toFixed(1)}m`
+                : 0
+              }
+            </div>
           </Cell>
         )}
         width={this.state.totalColWidth}
@@ -170,16 +151,10 @@ class GTable extends Component {
             {...props}
             className="cell number-cell"
           >
-            <CSSTransitionGroup
-              transitionName="cell"
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={100}
-            >
-              <div key={props.rowIndex}>
-                {`${+((this.state.data[props.rowIndex].year.total
-                  + this.state.data[props.rowIndex].year.shares) / 1000000).toFixed(1)}m`}
-              </div>
-            </CSSTransitionGroup>
+            <div key={props.rowIndex}>
+              {`${+((this.state.data[props.rowIndex].year.total
+                + this.state.data[props.rowIndex].year.shares) / 1000000).toFixed(1)}m`}
+            </div>
           </Cell>
         )}
         width={this.state.totalColWidth}
@@ -194,19 +169,14 @@ class GTable extends Component {
             {...props}
             className="cell chart-cell"
           >
-            <CSSTransitionGroup
-              transitionName="cell"
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={100}
-            >
-              <ChartCell
-                {...props}
-                data={this.state.data}
-                chartType="proportional-stacked-bar"
-                compensation
-                shares={false}
-              />
-            </CSSTransitionGroup>
+            <ChartCell
+              {...props}
+              data={this.state.data}
+              chartType="proportional-stacked-bar"
+              compensation
+              shares={false}
+              elementId={this.props.elementId}
+            />
           </Cell>
         )}
         flexGrow={1}
@@ -222,19 +192,14 @@ class GTable extends Component {
             {...props}
             className="cell chart-cell"
           >
-            <CSSTransitionGroup
-              transitionName="cell"
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={100}
-            >
-              <ChartCell
-                {...props}
-                data={this.state.data}
-                chartType="proportional-stacked-bar"
-                compensation={false}
-                shares
-              />
-            </CSSTransitionGroup>
+            <ChartCell
+              {...props}
+              data={this.state.data}
+              chartType="proportional-stacked-bar"
+              compensation={false}
+              shares
+              elementId={this.props.elementId}
+            />
           </Cell>
         )}
         flexGrow={1}
@@ -250,19 +215,14 @@ class GTable extends Component {
             {...props}
             className="cell chart-cell"
           >
-            <CSSTransitionGroup
-              transitionName="cell"
-              transitionEnterTimeout={300}
-              transitionLeaveTimeout={100}
-            >
-              <ChartCell
-                {...props}
-                data={this.state.data}
-                chartType="proportional-stacked-bar"
-                compensation
-                shares
-              />
-            </CSSTransitionGroup>
+            <ChartCell
+              {...props}
+              data={this.state.data}
+              chartType="proportional-stacked-bar"
+              compensation
+              shares
+              elementId={this.props.elementId}
+            />
           </Cell>
         )}
         flexGrow={1}
@@ -318,6 +278,7 @@ GTable.propTypes = {
   data: PropTypes.array.isRequired, // eslint-disable-line
   compensation: PropTypes.bool.isRequired,
   shares: PropTypes.bool.isRequired,
+  elementId: PropTypes.string.isRequired,
 };
 
 export default GTable;

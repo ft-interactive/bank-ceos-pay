@@ -10,6 +10,7 @@ const App1 = () => {
       data={data}
       compensation
       shares={false}
+      elementId="react-app1"
     />
   );
 };
@@ -21,6 +22,7 @@ const App2 = () => {
       data={data}
       compensation={false}
       shares
+      elementId="react-app2"
     />
   );
 };
@@ -32,6 +34,7 @@ const App3 = () => {
       data={data}
       compensation
       shares
+      elementId="react-app3"
     />
   );
 };
