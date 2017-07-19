@@ -48,18 +48,18 @@ class GTable extends Component {
     const containerWidth = this.node.offsetWidth;
     const gutterWidth = windowWidth >= 740 ? 20 : 10;
     const rowHeight = 52;
-    const executiveNameColWidth = windowWidth >= 1220 ? 210 // eslint-disable-line
-      : windowWidth >= 980 ? 193 // eslint-disable-line
-      : windowWidth >= 740 ? 193 // eslint-disable-line
-      : windowWidth >= 490 ? 193 // eslint-disable-line
-      : windowWidth >= 375 ? 177 // eslint-disable-line
-      : 210;
+    const executiveNameColWidth = windowWidth >= 1220 ? 214 // eslint-disable-line
+      : windowWidth >= 980 ? 197 // eslint-disable-line
+      : windowWidth >= 740 ? 197 // eslint-disable-line
+      : windowWidth >= 490 ? 197 // eslint-disable-line
+      : windowWidth >= 375 ? 180 // eslint-disable-line
+      : 180;
     const totalColWidth = windowWidth >= 1220 ? 97 // eslint-disable-line
       : windowWidth >= 980 ? 88 // eslint-disable-line
       : windowWidth >= 740 ? 88 // eslint-disable-line
       : windowWidth >= 490 ? 88 // eslint-disable-line
-      : windowWidth >= 375 ? 52 // eslint-disable-line
-      : 87;
+      : windowWidth >= 375 ? 53 // eslint-disable-line
+      : 120;
 
     this.setState({
       containerWidth: containerWidth - gutterWidth,
