@@ -152,8 +152,7 @@ class GTable extends Component {
             className="cell number-cell"
           >
             <div key={props.rowIndex}>
-              {`${+((this.state.data[props.rowIndex].year.total
-                + this.state.data[props.rowIndex].year.shares) / 1000000).toFixed(1)}m`}
+              {`${+(this.state.data[props.rowIndex].year.totalplusshares / 1000000).toFixed(1)}m`}
             </div>
           </Cell>
         )}

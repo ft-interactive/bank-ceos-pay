@@ -40,6 +40,7 @@ export default () => ({ // eslint-disable-line
   byline: [
     { name: 'Laura Noonan', url: 'https://www.ft.com/stream/ed45acb9-9da0-35fd-94ae-184c05d5ba36' },
     { name: 'David Blood', url: 'https://www.ft.com/david-blood' },
+    { name: 'FT reporters', url: '' },
   ],
 
   // Appears in the HTML <title>
