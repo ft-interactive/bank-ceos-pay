@@ -1,0 +1,42 @@
+.chart-cell-header {
+  div.fixedDataTableCellLayout_wrap3 {
+    vertical-align: bottom;
+  }
+  div.public_fixedDataTableCell_cellContent {
+    padding: 0 8px 8px;
+  }
+  div.legend {
+    width: 100%;
+    div.legend-item {
+      display: inline-block;
+      min-width: 46.17px;
+      div.legend-bar {
+        display: inline-block;
+        width: 4px;
+        height: 18px;
+        vertical-align: bottom;
+        &-salary {
+          background-color: #1e558c;
+        }
+        &-bonus {
+          background-color: #9ee5f3;
+        }
+        &-stock {
+          background-color: #1e8fcc;
+        }
+        &-other {
+          background-color: #b3325d;
+        }
+        &-shares {
+          background-color: #d9ccc3;
+        }
+      }
+      div.legend-text {
+        display: inline-block;
+        padding: 0 6px 0 4px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+  }
+}

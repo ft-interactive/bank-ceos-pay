@@ -162,7 +162,35 @@ class GTable extends Component {
 
     const compensationCol = windowWidth >= 375 ? (
       <Column
-        header={null}
+        header={
+          <Cell className="cell header-cell chart-cell-header">
+            <div className="legend">
+              <div className="legend-item">
+                <div className="legend-bar legend-bar-salary" />
+
+                <div className="legend-text">Salary</div>
+              </div>
+
+              <div className="legend-item">
+                <div className="legend-bar legend-bar-bonus" />
+
+                <div className="legend-text">Bonus</div>
+              </div>
+
+              <div className="legend-item">
+                <div className="legend-bar legend-bar-stock" />
+
+                <div className="legend-text">Stock</div>
+              </div>
+
+              <div className="legend-item">
+                <div className="legend-bar legend-bar-other" />
+
+                <div className="legend-text">Other</div>
+              </div>
+            </div>
+          </Cell>
+        }
         cell={props => (
           <Cell
             {...props}
@@ -185,7 +213,17 @@ class GTable extends Component {
 
     const sharesCol = windowWidth >= 375 ? (
       <Column
-        header={null}
+        header={
+          <Cell className="cell header-cell chart-cell-header">
+            <div className="legend">
+              <div className="legend-item">
+                <div className="legend-bar legend-bar-shares" />
+
+                <div className="legend-text">Shares</div>
+              </div>
+            </div>
+          </Cell>
+        }
         cell={props => (
           <Cell
             {...props}
@@ -208,7 +246,41 @@ class GTable extends Component {
 
     const combinedCol = windowWidth >= 375 ? (
       <Column
-        header={null}
+        header={
+          <Cell className="cell header-cell chart-cell-header">
+            <div className="legend">
+              <div className="legend-item">
+                <div className="legend-bar legend-bar-salary" />
+
+                <div className="legend-text">Salary</div>
+              </div>
+
+              <div className="legend-item">
+                <div className="legend-bar legend-bar-bonus" />
+
+                <div className="legend-text">Bonus</div>
+              </div>
+
+              <div className="legend-item">
+                <div className="legend-bar legend-bar-stock" />
+
+                <div className="legend-text">Stock</div>
+              </div>
+
+              <div className="legend-item">
+                <div className="legend-bar legend-bar-other" />
+
+                <div className="legend-text">Other</div>
+              </div>
+
+              <div className="legend-item">
+                <div className="legend-bar legend-bar-shares" />
+
+                <div className="legend-text">Shares</div>
+              </div>
+            </div>
+          </Cell>
+        }
         cell={props => (
           <Cell
             {...props}
