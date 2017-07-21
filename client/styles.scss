@@ -1,7 +1,6 @@
 @import 'o-colors/main';
 @import 'o-grid/main';
 @import 'o-buttons/main';
-@import 'o-icons/main';
 @import 'components/core/main';
 @import 'fixed-data-table-2/dist/fixed-data-table';
 @import 'components/g-table/main';
@@ -38,8 +37,4 @@ body {
   text-align: center;
   text-transform: uppercase;
   color: #33302e;
-}
-
-.icon-arrow-up {
-  @include oIconsGetIcon('arrow-up', #26747a, 16);
 }

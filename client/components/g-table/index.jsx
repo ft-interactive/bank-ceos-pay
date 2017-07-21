@@ -120,7 +120,7 @@ class GTable extends Component {
             </Cell>
           </a>
         )}
-        flexGrow={windowWidth < 375 && 1}
+        flexGrow={windowWidth < 375 ? 1 : null}
         width={this.state.totalColWidth}
       />
     );
