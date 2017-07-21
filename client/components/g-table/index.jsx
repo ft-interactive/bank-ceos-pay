@@ -62,7 +62,7 @@ class GTable extends Component {
       : 53;
 
     this.setState({
-      containerWidth: containerWidth + gutterWidth,
+      containerWidth: containerWidth - gutterWidth,
       rowHeight,
       executiveNameColWidth,
       totalColWidth,
