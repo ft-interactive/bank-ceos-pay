@@ -1,7 +1,7 @@
 {% from "components/myft-follow/button.html" import FollowButton -%}
 
 {% macro Card(i) %}
-  <div class="card-position" data-o-component="o-card">
+  <div class="card-position" data-o-component="o-card" id="{{ i.ceo.id }}">
     <div style="display: flex; flex-direction: row; flex-wrap: nowrap; align-items: flex-start">
       <figure class="card-position__image">
         <img alt="" src="https://www.ft.com/__origami/service/image/v2/images/raw/{{ i.ceo.imgurl }}?source=ig&fit=scale-down&width=700" width="64px"/>
@@ -22,7 +22,15 @@
     </div>
 
     <div class="card-position__body">
-      {{ i.copy | safe }}
+      <p>
+        {{ i.copy | safe }}
+      </p>
+    </div>
+
+    <div style="text-align: right">
+      <a href="#">
+        <i class="icon-arrow-up"></i>Back to top
+      </a>
     </div>
   </div>
 {% endmacro %}

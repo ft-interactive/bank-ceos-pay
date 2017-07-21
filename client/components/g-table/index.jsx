@@ -48,18 +48,18 @@ class GTable extends Component {
     const containerWidth = this.node.offsetWidth;
     const gutterWidth = windowWidth >= 740 ? 20 : 10;
     const rowHeight = 52;
-    const executiveNameColWidth = windowWidth >= 1220 ? 214 // eslint-disable-line
-      : windowWidth >= 980 ? 197 // eslint-disable-line
-      : windowWidth >= 740 ? 197 // eslint-disable-line
-      : windowWidth >= 490 ? 197 // eslint-disable-line
-      : windowWidth >= 375 ? 180 // eslint-disable-line
-      : 180;
+    const executiveNameColWidth = windowWidth >= 1220 ? 219 // eslint-disable-line
+      : windowWidth >= 980 ? 201 // eslint-disable-line
+      : windowWidth >= 740 ? 201 // eslint-disable-line
+      : windowWidth >= 490 ? 201 // eslint-disable-line
+      : windowWidth >= 375 ? 184 // eslint-disable-line
+      : 184;
     const totalColWidth = windowWidth >= 1220 ? 97 // eslint-disable-line
       : windowWidth >= 980 ? 88 // eslint-disable-line
       : windowWidth >= 740 ? 88 // eslint-disable-line
       : windowWidth >= 490 ? 88 // eslint-disable-line
       : windowWidth >= 375 ? 53 // eslint-disable-line
-      : 120;
+      : 53;
 
     this.setState({
       containerWidth: containerWidth - gutterWidth,
@@ -78,29 +78,27 @@ class GTable extends Component {
       <Column
         header={<Cell className="cell header-cell">Executive</Cell>}
         cell={props => (
-          <Cell
-            {...props}
-            className="cell image-cell"
-          >
-            <div key={props.rowIndex}>
-              <img
-                src={this.state.data[props.rowIndex].ceo.imgurl}
-                alt={this.state.data[props.rowIndex].ceo.name}
-                height={Math.floor(this.state.rowHeight * 0.62)}
-              />
-              <div className="executive-name">
-                {this.state.data[props.rowIndex].ceo.name}<br />
-                <a
-                  className="o-typography-link-topic o-typography-link-topic--small"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={this.state.data[props.rowIndex].company.fturl}
-                >
-                  {this.state.data[props.rowIndex].company.name}
-                </a>
+          <a href={`#${this.state.data[props.rowIndex].ceo.id}`}>
+            <Cell
+              {...props}
+              className="cell image-cell"
+            >
+              <div key={props.rowIndex}>
+                <img
+                  src={this.state.data[props.rowIndex].ceo.imgurl}
+                  alt={this.state.data[props.rowIndex].ceo.name}
+                  height={Math.floor(this.state.rowHeight * 0.62)}
+                />
+                <div className="executive-name">
+                  {this.state.data[props.rowIndex].ceo.name}<br />
+
+                  <span className="o-typography-link-topic o-typography-link-topic--small">
+                    {this.state.data[props.rowIndex].company.name}
+                  </span>
+                </div>
               </div>
-            </div>
-          </Cell>
+            </Cell>
+          </a>
         )}
         width={this.state.executiveNameColWidth}
       />
@@ -110,15 +108,18 @@ class GTable extends Component {
       <Column
         header={<Cell className="cell header-cell">Total ($US)</Cell>}
         cell={props => (
-          <Cell
-            {...props}
-            className="cell number-cell"
-          >
-            <div key={props.rowIndex}>
-              {`${+(this.state.data[props.rowIndex].year.total / 1000000).toFixed(1)}m`}
-            </div>
-          </Cell>
+          <a href={`#${this.state.data[props.rowIndex].ceo.id}`} key={props.rowIndex}>
+            <Cell
+              {...props}
+              className="cell number-cell"
+            >
+              <div>
+                {`${+(this.state.data[props.rowIndex].year.total / 1000000).toFixed(1)}m`}
+              </div>
+            </Cell>
+          </a>
         )}
+        flexGrow={windowWidth < 375 && 1}
         width={this.state.totalColWidth}
       />
     );
@@ -127,17 +128,19 @@ class GTable extends Component {
       <Column
         header={<Cell className="cell header-cell">Total ($US)</Cell>}
         cell={props => (
-          <Cell
-            {...props}
-            className="cell number-cell"
-          >
-            <div key={props.rowIndex}>
-              {this.state.data[props.rowIndex].year.shares > 0 ?
-                `${+(this.state.data[props.rowIndex].year.shares / 1000000).toFixed(1)}m`
-                : 0
-              }
-            </div>
-          </Cell>
+          <a href={`#${this.state.data[props.rowIndex].ceo.id}`} key={props.rowIndex}>
+            <Cell
+              {...props}
+              className="cell number-cell"
+            >
+              <div>
+                {this.state.data[props.rowIndex].year.shares > 0 ?
+                  `${+(this.state.data[props.rowIndex].year.shares / 1000000).toFixed(1)}m`
+                  : 0
+                }
+              </div>
+            </Cell>
+          </a>
         )}
         width={this.state.totalColWidth}
       />
@@ -147,14 +150,16 @@ class GTable extends Component {
       <Column
         header={<Cell className="cell header-cell">Total ($US)</Cell>}
         cell={props => (
-          <Cell
-            {...props}
-            className="cell number-cell"
-          >
-            <div key={props.rowIndex}>
-              {`${+(this.state.data[props.rowIndex].year.totalplusshares / 1000000).toFixed(1)}m`}
-            </div>
-          </Cell>
+          <a href={`#${this.state.data[props.rowIndex].ceo.id}`} key={props.rowIndex}>
+            <Cell
+              {...props}
+              className="cell number-cell"
+            >
+              <div>
+                {`${+(this.state.data[props.rowIndex].year.totalplusshares / 1000000).toFixed(1)}m`}
+              </div>
+            </Cell>
+          </a>
         )}
         width={this.state.totalColWidth}
       />
@@ -192,19 +197,21 @@ class GTable extends Component {
           </Cell>
         }
         cell={props => (
-          <Cell
-            {...props}
-            className="cell chart-cell"
-          >
-            <ChartCell
+          <a href={`#${this.state.data[props.rowIndex].ceo.id}`} key={props.rowIndex}>
+            <Cell
               {...props}
-              data={this.state.data}
-              chartType="proportional-stacked-bar"
-              compensation
-              shares={false}
-              elementId={this.props.elementId}
-            />
-          </Cell>
+              className="cell chart-cell"
+            >
+              <ChartCell
+                {...props}
+                data={this.state.data}
+                chartType="proportional-stacked-bar"
+                compensation
+                shares={false}
+                elementId={this.props.elementId}
+              />
+            </Cell>
+          </a>
         )}
         flexGrow={1}
         width={20}
@@ -225,19 +232,21 @@ class GTable extends Component {
           </Cell>
         }
         cell={props => (
-          <Cell
-            {...props}
-            className="cell chart-cell"
-          >
-            <ChartCell
+          <a href={`#${this.state.data[props.rowIndex].ceo.id}`} key={props.rowIndex}>
+            <Cell
               {...props}
-              data={this.state.data}
-              chartType="proportional-stacked-bar"
-              compensation={false}
-              shares
-              elementId={this.props.elementId}
-            />
-          </Cell>
+              className="cell chart-cell"
+            >
+              <ChartCell
+                {...props}
+                data={this.state.data}
+                chartType="proportional-stacked-bar"
+                compensation={false}
+                shares
+                elementId={this.props.elementId}
+              />
+            </Cell>
+          </a>
         )}
         flexGrow={1}
         width={20}
@@ -282,19 +291,21 @@ class GTable extends Component {
           </Cell>
         }
         cell={props => (
-          <Cell
-            {...props}
-            className="cell chart-cell"
-          >
-            <ChartCell
+          <a href={`#${this.state.data[props.rowIndex].ceo.id}`} key={props.rowIndex}>
+            <Cell
               {...props}
-              data={this.state.data}
-              chartType="proportional-stacked-bar"
-              compensation
-              shares
-              elementId={this.props.elementId}
-            />
-          </Cell>
+              className="cell chart-cell"
+            >
+              <ChartCell
+                {...props}
+                data={this.state.data}
+                chartType="proportional-stacked-bar"
+                compensation
+                shares
+                elementId={this.props.elementId}
+              />
+            </Cell>
+          </a>
         )}
         flexGrow={1}
         width={20}

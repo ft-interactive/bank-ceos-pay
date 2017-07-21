@@ -76,7 +76,7 @@ $o-icons-is-silent: false;
   }
   &.number-cell {
     text-align: right;
-    font-weight: 600;
+    // font-weight: 600;
     -webkit-font-feature-settings: 'tnum';
     -moz-font-feature-settings: 'tnum';
     font-feature-settings: 'tnum';
@@ -88,14 +88,23 @@ $o-icons-is-silent: false;
     border-radius: 50%;
     vertical-align: middle;
   }
+  a {
+    color: #333;
+    border-bottom: none;
+  }
   .executive-name {
     display: inline-block;
     vertical-align: middle;
+    font-weight: 600;
+    &:hover {
+      color: #807970 !important
+    }
   }
   .o-typography-link-topic {
     font-size: 11px;
+    font-weight: 400;
     line-height: 11px;
-    color: #9e2f50;
+    color: #333;
     border-bottom: none;
   }
 }
