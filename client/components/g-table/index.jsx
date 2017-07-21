@@ -48,12 +48,12 @@ class GTable extends Component {
     const containerWidth = this.node.offsetWidth;
     const gutterWidth = windowWidth >= 740 ? 20 : 10;
     const rowHeight = 52;
-    const executiveNameColWidth = windowWidth >= 1220 ? 219 // eslint-disable-line
-      : windowWidth >= 980 ? 201 // eslint-disable-line
-      : windowWidth >= 740 ? 201 // eslint-disable-line
-      : windowWidth >= 490 ? 201 // eslint-disable-line
-      : windowWidth >= 375 ? 184 // eslint-disable-line
-      : 184;
+    const executiveNameColWidth = windowWidth >= 1220 ? 222 // eslint-disable-line
+      : windowWidth >= 980 ? 204 // eslint-disable-line
+      : windowWidth >= 740 ? 204 // eslint-disable-line
+      : windowWidth >= 490 ? 204 // eslint-disable-line
+      : windowWidth >= 375 ? 186 // eslint-disable-line
+      : 186;
     const totalColWidth = windowWidth >= 1220 ? 97 // eslint-disable-line
       : windowWidth >= 980 ? 88 // eslint-disable-line
       : windowWidth >= 740 ? 88 // eslint-disable-line
@@ -90,7 +90,9 @@ class GTable extends Component {
                   height={Math.floor(this.state.rowHeight * 0.62)}
                 />
                 <div className="executive-name">
-                  {this.state.data[props.rowIndex].ceo.name}<br />
+                  {this.state.data[props.rowIndex].ceo.name}
+                  {this.state.data[props.rowIndex].ceo.sharesasterisk && this.props.shares && '*'}
+                  <br />
 
                   <span className="o-typography-link-topic o-typography-link-topic--small">
                     {this.state.data[props.rowIndex].company.name}
