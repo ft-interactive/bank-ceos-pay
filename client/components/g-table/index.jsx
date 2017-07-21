@@ -62,7 +62,7 @@ class GTable extends Component {
       : 53;
 
     this.setState({
-      containerWidth: containerWidth - gutterWidth,
+      containerWidth: containerWidth + gutterWidth,
       rowHeight,
       executiveNameColWidth,
       totalColWidth,
@@ -347,7 +347,6 @@ class GTable extends Component {
     return (
       <div>
         <div
-          data-o-grid-colspan="12 S11 Scenter M9 L8 XL7"
           ref={node => (this.node = node)}
           style={divStyle}
         >
