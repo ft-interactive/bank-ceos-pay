@@ -5,7 +5,7 @@ export default () => ({ // eslint-disable-line
 
   // canonical URL of the published page
   // https://ig.ft.com/sites/bank-ceo-compensation/2017 get filled in by the ./configure script
-  url: 'https://ig.ft.com/sites/bank-ceo-compensation/2017',
+  url: 'https://ig.ft.com/bank-ceo-pay/2017/',
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
@@ -30,7 +30,7 @@ export default () => ({ // eslint-disable-line
     title: '',
     description: '',
     credit: '',
-    url: 'https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Fc4bf0be4-7c15-11e4-a7b8-00144feabdc0?source=ig&fit=scale-down&width=700',
+    url: 'https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3A6ba8094a-6e1e-11e7-b9c7-15af748b60d0?source=ig&width=2048&height=1152&quality=high',
     width: 2048, // ensure correct width
     height: 1152, // ensure correct height
   },
@@ -88,7 +88,7 @@ export default () => ({ // eslint-disable-line
   //ADVERTISING
   ads: {
     // ad unit hierarchy makes ads more granular. Start with ft.com and /companies /markets /world as appropriate to your story
-    gptAdunit: 'ft.com/companies/european',
+    gptAdunit: 'ft.com/companies/banks',
     // granular targeting is optional and will be specified by the ads team
     dftTargeting: '',
   },
