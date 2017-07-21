@@ -111,11 +111,11 @@ $o-icons-is-silent: false;
 
 @media (max-width: 375px) {
   .cell {
-    &.header-cell {
-      .fixedDataTableCellLayout_wrap3 {
-        padding-right: 8px;
-      }
-    }
+    // &.header-cell {
+    //   .fixedDataTableCellLayout_wrap3 {
+    //     padding-right: 8px;
+    //   }
+    // }
     &.number-cell {
       .fixedDataTableCellLayout_wrap3 {
         padding-right: 8px;

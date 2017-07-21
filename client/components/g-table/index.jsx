@@ -46,7 +46,6 @@ class GTable extends Component {
   handleResize() {
     windowWidth = window.innerWidth;
     const containerWidth = this.node.offsetWidth;
-    const gutterWidth = windowWidth >= 740 ? 20 : 10;
     const rowHeight = 52;
     const executiveNameColWidth = windowWidth >= 1220 ? 222 // eslint-disable-line
       : windowWidth >= 980 ? 204 // eslint-disable-line
@@ -62,7 +61,7 @@ class GTable extends Component {
       : 53;
 
     this.setState({
-      containerWidth: containerWidth - gutterWidth,
+      containerWidth,
       rowHeight,
       executiveNameColWidth,
       totalColWidth,
