@@ -115,13 +115,13 @@ class ProportionalStackedBar extends Component {
       .range([0, props.svgWidth]);
 
     const t = d3.transition()
-      .duration(600)
+      .duration(1000)
       .ease(d3.easeCubicInOut);
 
     this.svg.select('g')
       .selectAll('rect')
         .transition(t)
-        .delay(() => props.rowIndex * 60)
+        .delay(() => props.rowIndex * 100)
         .attr('x', d => this.barWidth(d.prevValue))
         .attr('width', d => this.barWidth(d.value));
   }
