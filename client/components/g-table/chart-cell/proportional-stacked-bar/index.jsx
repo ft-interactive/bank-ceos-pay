@@ -121,7 +121,7 @@ class ProportionalStackedBar extends Component {
     this.svg.select('g')
       .selectAll('rect')
         .transition(t)
-        .delay(() => props.rowIndex * 100)
+        .delay(() => props.rowIndex * 60)
         .attr('x', d => this.barWidth(d.prevValue))
         .attr('width', d => this.barWidth(d.value));
   }

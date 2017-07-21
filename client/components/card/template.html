@@ -22,15 +22,13 @@
     </div>
 
     <div class="card-position__body">
-      <p>
-        {{ i.copy | safe }}
-      </p>
-    </div>
+      {{ i.copy | safe }}
 
-    <div style="text-align: right">
-      <a href="#">
-        <i class="icon-arrow-up"></i>Back to top
-      </a>
+      <p style="margin-bottom: 0">
+        <a href="#">
+          <i class="icon-arrow-up"></i>Back to top
+        </a>
+      </p>
     </div>
   </div>
 {% endmacro %}
