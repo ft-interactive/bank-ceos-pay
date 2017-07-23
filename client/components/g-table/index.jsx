@@ -1,4 +1,3 @@
-import oGrid from 'o-grid'; // eslint-disable-line
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Table, Column, Cell } from 'fixed-data-table-2';
