@@ -89,8 +89,6 @@ class GTable extends Component {
                 />
                 <div className="executive-name">
                   {this.state.data[props.rowIndex].ceo.name}
-                  {this.state.data[props.rowIndex].ceo.compasterisk && this.props.compensation && !this.props.shares && '*'}
-                  {this.state.data[props.rowIndex].ceo.compcross && this.props.compensation && !this.props.shares && '**'}
                   {this.state.data[props.rowIndex].ceo.sharesasterisk && !this.props.compensation && this.props.shares && '*'}
                   <br />
 
@@ -228,7 +226,7 @@ class GTable extends Component {
               <div className="legend-item">
                 <div className="legend-bar legend-bar-shares" />
 
-                <div className="legend-text">Shares</div>
+                <div className="legend-text">Share gains</div>
               </div>
             </div>
           </Cell>
@@ -287,7 +285,7 @@ class GTable extends Component {
               <div className="legend-item">
                 <div className="legend-bar legend-bar-shares" />
 
-                <div className="legend-text">Shares</div>
+                <div className="legend-text">Share gains</div>
               </div>
             </div>
           </Cell>
