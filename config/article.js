@@ -14,7 +14,7 @@ export default () => ({ // eslint-disable-line
   headline: 'Bank chief executives\' pay 2016',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  summary: 'US bank bosses enjoyed big rewards for running their recovering institutions last year, leaving their European peers even further behind in the CEO pay stakes',
 
   topic: {
     name: 'Banks',
@@ -22,8 +22,8 @@ export default () => ({ // eslint-disable-line
   },
 
   relatedArticle: {
-    text: 'Related article »',
-    url: 'https://www.ft.com/content/0d522ea8-6b57-11e7-bfeb-33fe0c5b7eaa',
+    // text: 'Related article »',
+    // url: 'https://www.ft.com/content/0d522ea8-6b57-11e7-bfeb-33fe0c5b7eaa',
   },
 
   mainImage: {
@@ -65,7 +65,7 @@ export default () => ({ // eslint-disable-line
   // General social
   // socialImage: '',
   socialHeadline: 'Here\'s what the CEOs of the world\'s biggest banks earn',
-  // socialDescription: '',
+  socialDescription: 'US bank bosses enjoyed big rewards for running their recovering institutions last year, leaving their European peers even further behind in the CEO pay stakes',
   // twitterCreator: '@author's_account', // shows up in summary_large_image cards
 
   // TWEET BUTTON CUSTOM TEXT
@@ -78,12 +78,12 @@ export default () => ({ // eslint-disable-line
   // TWITTER METADATA (for Twitter cards)
   // twitterImage: '',
   twitterHeadline: 'Here\'s what the CEOs of the world\'s biggest banks earn',
-  // twitterDescription: '',
+  twitterDescription: 'US bank bosses enjoyed big rewards for running their recovering institutions last year, leaving their European peers even further behind in the CEO pay stakes',
 
   // FACEBOOK
   // facebookImage: '',
   facebookHeadline: 'Here\'s what the CEOs of the world\'s biggest banks earn',
-  // facebookDescription: '',
+  facebookDescription: 'US bank bosses enjoyed big rewards for running their recovering institutions last year, leaving their European peers even further behind in the CEO pay stakes',
 
   //ADVERTISING
   ads: {
