@@ -22,8 +22,8 @@ export default () => ({ // eslint-disable-line
   },
 
   relatedArticle: {
-    // text: 'Related article »',
-    // url: 'https://www.ft.com/content/0d522ea8-6b57-11e7-bfeb-33fe0c5b7eaa',
+    text: 'Related article »',
+    url: 'https://www.ft.com/content/0d522ea8-6b57-11e7-bfeb-33fe0c5b7eaa',
   },
 
   mainImage: {
