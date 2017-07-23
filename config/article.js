@@ -47,7 +47,7 @@ export default () => ({ // eslint-disable-line
   title: 'Bank chief executives\' pay 2016',
 
   // meta data
-  description: '',
+  description: 'US bank bosses enjoyed big rewards for running their recovering institutions last year, leaving their European peers even further behind in the CEO pay stakes',
 
   /*
   TODO: Select Twitter card type -
@@ -69,7 +69,7 @@ export default () => ({ // eslint-disable-line
   // twitterCreator: '@author's_account', // shows up in summary_large_image cards
 
   // TWEET BUTTON CUSTOM TEXT
-  // tweetText: '',
+  tweetText: 'Here\'s what the CEOs of the world\'s biggest banks earn',
   // twitterRelatedAccounts: ['authors_account_here', 'ftdata'], // Twitter lists these as suggested accounts to follow after a user tweets (do not include @)
 
   // Fill out the Facebook/Twitter metadata sections below if you want to
