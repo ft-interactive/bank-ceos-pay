@@ -31,7 +31,12 @@ class GTable extends Component {
       return obj;
     });
 
-    filteredData.sort((a, b) => b.year.total - a.year.total);
+    if (this.props.compensation && this.props.shares) {
+      filteredData.sort((a, b) => b.year.totalplusshares - a.year.totalplusshares);
+    } else {
+      filteredData.sort((a, b) => b.year.total - a.year.total);
+    }
+
 
     this.setState({ data: filteredData });
   }
