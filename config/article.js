@@ -64,7 +64,7 @@ export default () => ({ // eslint-disable-line
   */
   // General social
   // socialImage: '',
-  // socialHeadline: '',
+  socialHeadline: 'Here\'s what the CEOs of the world\'s biggest banks earn',
   // socialDescription: '',
   // twitterCreator: '@author's_account', // shows up in summary_large_image cards
 
@@ -77,12 +77,12 @@ export default () => ({ // eslint-disable-line
 
   // TWITTER METADATA (for Twitter cards)
   // twitterImage: '',
-  // twitterHeadline: '',
+  twitterHeadline: 'Here\'s what the CEOs of the world\'s biggest banks earn',
   // twitterDescription: '',
 
   // FACEBOOK
   // facebookImage: '',
-  // facebookHeadline: '',
+  facebookHeadline: 'Here\'s what the CEOs of the world\'s biggest banks earn',
   // facebookDescription: '',
 
   //ADVERTISING
