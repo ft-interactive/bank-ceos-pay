@@ -89,7 +89,9 @@ class GTable extends Component {
                 />
                 <div className="executive-name">
                   {this.state.data[props.rowIndex].ceo.name}
-                  {this.state.data[props.rowIndex].ceo.sharesasterisk && this.props.shares && '*'}
+                  {this.state.data[props.rowIndex].ceo.compasterisk && this.props.compensation && !this.props.shares && '*'}
+                  {this.state.data[props.rowIndex].ceo.compcross && this.props.compensation && !this.props.shares && '**'}
+                  {this.state.data[props.rowIndex].ceo.sharesasterisk && !this.props.compensation && this.props.shares && '*'}
                   <br />
 
                   <span className="o-typography-link-topic o-typography-link-topic--small">

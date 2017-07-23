@@ -23,7 +23,7 @@ export default () => ({ // eslint-disable-line
 
   relatedArticle: {
     text: 'Related article »',
-    url: 'https://en.wikipedia.org/wiki/Politics_and_the_English_Language',
+    url: 'https://www.ft.com/content/0d522ea8-6b57-11e7-bfeb-33fe0c5b7eaa',
   },
 
   mainImage: {
