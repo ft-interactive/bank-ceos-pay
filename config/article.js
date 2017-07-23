@@ -77,7 +77,7 @@ export default () => ({ // eslint-disable-line
 
   // TWITTER METADATA (for Twitter cards)
   // twitterImage: '',
-  twitterHeadline: 'Here\'s what the CEOs of the world\'s biggest banks earn',
+  twitterHeadline: 'Bank chief executives\' pay 2016',
   twitterDescription: 'US bank bosses enjoyed big rewards for running their recovering institutions last year, leaving their European peers even further behind in the CEO pay stakes',
 
   // FACEBOOK
