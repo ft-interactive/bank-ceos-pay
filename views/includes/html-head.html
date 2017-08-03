@@ -175,8 +175,7 @@
 {
  "gpt": {
    "network": 5887,
-   "adUnit": "{{ ads.gptAdunit }}"
- },
+   "site": "ft.com", "zone": "{{ ads.gptAdunit | replace(r/.{7}/, "" }}" },
  "dfp_targeting": "{{ ads.dftTargeting }}"
 }
 </script>
